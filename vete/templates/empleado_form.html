@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Crear Empleado</title>
+    <title>Empleado</title>
 </head>
 <body>
-    <h1>Crear Empleado</h1>
+    <h1>Empleado</h1>
+    <a href="/">Ia inicio</a>
     <form method="post">
         {% csrf_token %}
         {{ empleado_form.as_p }}
@@ -13,7 +14,6 @@
             {{ form.as_p }}
         {% endfor %}
         <button type="submit">Guardar</button>
-        <button onclick="history.back()">Cancelar</button>
     </form>
 </body>
 </html>
