@@ -1,0 +1,8 @@
+<a href="/Mascota/add">Add...</a>
+{% for m in Mascota %}
+<div>
+	<p>{{m.nombre}}</p>
+	<a href="/Mascota/{{m.id}}/edit">Edit</a>
+	<a href="/Mascota/{{m.id}}/delete">Delete</a>
+</div>
+{% endfor %}

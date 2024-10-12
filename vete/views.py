@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import EmpleadoForm, AdelantoFormSet
-from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente
+from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -145,18 +145,42 @@ class Prov_Delete(proveedor_mainclass, DeleteView):
 class cliente_mainclass:
     model = Cliente
     fields = ('__all__')
+    exclude = ('id',)
     success_url = reverse_lazy("/Cliente")
 
 class Client_List(cliente_mainclass, ListView):
     template_name = "Admin/Cliente/lista.html"
+    context_object_name = "Cliente"
 
 class Client_Create(cliente_mainclass, CreateView):
-    template_name = "Admin/Cliente/lista.html"
+    template_name = "Admin/Cliente/form.html"
 
 class Client_Update(cliente_mainclass, UpdateView):
-    template_name = "Admin/Cliente/lista.html"
+    template_name = "Admin/Cliente/form.html"
 
 class Client_Delete(cliente_mainclass, DeleteView):
     template_name = "Admin/Cliente/lista.html"
 # -------------------------   Cliente   ------------------------------[End]
 
+
+
+# ------------------------   Mascota ----------------------------------
+class mascota_mainclass:
+    model = Mascota
+    fields = ('__all__')
+    exclude = ('id',)
+    success_url = reverse_lazy('/Mascota/Lista')
+
+class Masc_List(mascota_mainclass, ListView):
+    template_name = "Admin/Mascota/lista.html"
+    context_object_name = "Mascota"
+
+class Masc_Create(mascota_mainclass, CreateView):
+    template_name = "Admin/Mascota/form.html"
+
+class Masc_Update(mascota_mainclass, UpdateView):
+    template_name = "Admin/Mascota/form.html"
+
+class Masc_Delete(mascota_mainclass, DeleteView):
+    template_name = "Admin/Mascota/delete.html"
+# -------------------- Mascota --------------------------------------[End]

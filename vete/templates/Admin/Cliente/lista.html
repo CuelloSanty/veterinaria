@@ -1,0 +1,8 @@
+<a href="/Cliente/add/">Add...</a>
+{% for c in Cliente %}
+<div>
+	<p>{{c.nombre}}</p>
+	<a href="/Cliente/{{c.id}}/edit">Edit</a>
+	<a href="/Cliente/{{c.id}}/delete">Delete</a>
+</div>
+{% endfor %}
