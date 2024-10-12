@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import EmpleadoForm, AdelantoFormSet
-from .models import Empleado, Adelanto, Articulo, Proveedore
+from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -138,8 +138,25 @@ class Prov_Update(proveedor_mainclass, UpdateView):
 class Prov_Delete(proveedor_mainclass, DeleteView):
     template_name = "Admin/Proveedor/delete.html"
 
-
 # ------------------------- Proveedores ------------------------------[end]
 
 
+# -------------------------   Cliente   ------------------------------
+class cliente_mainclass:
+    model = Cliente
+    fields = ('__all__')
+    success_url = reverse_lazy("/Cliente")
+
+class Client_List(cliente_mainclass, ListView):
+    template_name = "Admin/Cliente/lista.html"
+
+class Client_Create(cliente_mainclass, CreateView):
+    template_name = "Admin/Cliente/lista.html"
+
+class Client_Update(cliente_mainclass, UpdateView):
+    template_name = "Admin/Cliente/lista.html"
+
+class Client_Delete(cliente_mainclass, DeleteView):
+    template_name = "Admin/Cliente/lista.html"
+# -------------------------   Cliente   ------------------------------[End]
 
