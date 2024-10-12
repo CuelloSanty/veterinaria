@@ -69,8 +69,12 @@ class Articulo(models.Model):
     tipo_mascota = models.CharField(max_length=5, choices=[('perro',"Perro"), ('gato','Gato')])
     # campo [end]
 
+    def get_absolut_url(self):
+        return reverse('art_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return self.nombre
+
 
 
 
@@ -94,3 +98,52 @@ class Adelanto(models.Model):
 
     def __str__(self):
         return f"{self.Monto} - {self.FechaAdelanto}"
+
+class Cliente(models.Model):
+    nombre = models.CharField(max_length=100, null=False)
+    direccion = models.CharField(max_length=50, blank=True, null=True)
+    telefono = models.CharField(max_length=10,  blank=True, null=True)
+    email = models.EmailField(unique=True,  blank=True, null=True)
+    
+    def __str__(self):
+        return self.nombre
+
+class Mascota(models.Model):
+    nombre = models.CharField(max_length=30)
+    raza = models.CharField(max_length=30,  blank=True, null=True)
+    edad = models.IntegerField( blank=True, null=True)
+    cliente = models.ForeignKey(Cliente,related_name='Clientes', on_delete=models.PROTECT)
+    
+    def __str__(self):
+        return self.nombre
+
+class Atencione(models.Model):
+    dia = models.DateField()
+    hora = models.TimeField(auto_now=False, auto_now_add=False)
+    MEDICO = 'Med'
+    PELUQUERIA = 'Pel'
+    AMBOS = 'Amb'
+    tipo = [
+        ('Med', 'Medica'),
+        ('Pel', 'Peluqueria'),
+        ('Amb', 'Ambos'),
+    ]
+    tipo = models.CharField(max_length=5, choices=tipo, default=MEDICO)
+    descripcion = models.CharField(max_length=150)
+    Precio_Atencion = models.DecimalField(max_digits=10, decimal_places=2)
+    precio_final = models.DecimalField(max_digits=10, decimal_places=2, default=None)
+    
+    # Foranea
+    mascota = models.ForeignKey(Mascota, related_name='mascotas', on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.dia)
+
+
+class ArticuloAtencion(models.Model):
+    articulo = models.ForeignKey(Articulo, related_name='articulos', on_delete=models.CASCADE)
+    pedido = models.ForeignKey(Atencione, related_name='atencion', on_delete=models.CASCADE)
+    cantidad = models.IntegerField()
+
+    def __str__(self):
+        return str(self.id)
+# Atencion [End]
