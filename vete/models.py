@@ -121,6 +121,10 @@ class Mascota(models.Model):
     def __str__(self):
         return self.nombre
 
+
+
+
+# -----------------------------  Atencion --------------------------------------
 class Atencione(models.Model):
     dia = models.DateField()
     hora = models.TimeField(auto_now=False, auto_now_add=False)
@@ -150,4 +154,4 @@ class ArticuloAtencion(models.Model):
 
     def __str__(self):
         return str(self.id)
-# Atencion [End]
+# ------------------------------ Atencion --------------------------------
