@@ -8,10 +8,16 @@ urlpatterns = [
     path('emp/modif/<int:pk>/', views.empleado_modif, name="empleado_mofif"),
     path('emp/delete/<int:pk>/', views.empleado_delete, name="empleado_mofif"),
 
-    path('Articulos/Lista/', views.Art_list.as_view(), name="list"),
+    path('Articulos/Lista/', views.Art_list.as_view(), name="list empleado"),
     path('Articulos/add/', views.Art_Create.as_view(), name="Add"),
     path('Articulos/<int:pk>/edit/', views.Art_Update.as_view(), name="Update"),
     path('Articulos/<int:pk>/delete/', views.Art_Delete.as_view(), name="Delete"),
+
+    path('Proveedor/Lista/', views.Prov_List.as_view(), name="lista Proveedor"),
+    path('Proveedor/add/', views.Prov_Create.as_view(), name="Add"),
+    path('Proveedor/<int:pk>/edit/', views.Prov_Update.as_view(), name="Update"),
+    path('Proveedor/<int:pk>/delete/', views.Prov_Delete.as_view(), name="Delete"),
+
 
 
 

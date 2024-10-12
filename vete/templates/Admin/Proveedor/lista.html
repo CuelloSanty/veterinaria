@@ -1,0 +1,7 @@
+<a href="/Proveedor/add/">Add</a>
+{% for p in proveedores %}
+<div class="prov">
+	<span>{{p.nombre}}-cuit :{{p.cuit}}  <a href="/Proveedor/{{p.cuit}}/edit/">Modif</a> <a href="/Proveedor/{{p.cuit}}/delete/">Borrar</a></span>
+	
+</div>
+{% endfor %}

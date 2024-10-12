@@ -9,6 +9,10 @@ class Proveedore(models.Model):
     
     def __str__(self):
         return self.nombre
+
+    def get_absolut_url(self):
+        return reverse('proveedor', kwargs={'pk': self.pk})
+
 class Articulo(models.Model):
 
     MEDICAMENTO = 'Med'

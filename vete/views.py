@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import EmpleadoForm, AdelantoFormSet
-from .models import Empleado, Adelanto, Articulo
+from .models import Empleado, Adelanto, Articulo, Proveedore
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -117,6 +117,29 @@ def empleado_delete(request, pk):
         return redirect('/emp/')
     return render(request, 'Admin/Empleados/delete.html', {'emp': emp})
 # -------------------------> Emplados <-------------------------------
+
+
+# ------------------------- Proveedores ------------------------------
+class proveedor_mainclass:
+    model = Proveedore
+    fields = ('__all__')
+    success_url = reverse_lazy('/Proveedor')
+
+class Prov_List(proveedor_mainclass, ListView):
+    template_name = "Admin/Proveedor/lista.html"
+    context_object_name = "proveedores"
+
+class Prov_Create(proveedor_mainclass, CreateView):
+    template_name = "Admin/Proveedor/form.html"
+
+class Prov_Update(proveedor_mainclass, UpdateView):
+    template_name = "Admin/Proveedor/form.html"
+
+class Prov_Delete(proveedor_mainclass, DeleteView):
+    template_name = "Admin/Proveedor/delete.html"
+
+
+# ------------------------- Proveedores ------------------------------[end]
 
 
 
