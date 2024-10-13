@@ -1,7 +1,7 @@
-<h2>{% if view.action == 'add' %}Crear{% else %}Actualizar{% endif %} Item</h2>
-<a href="/Mascota/Lista">Ia Clientes...</a>
+<h2>{% if view.action == 'add' %} Crear {% else %}Actualizar{% endif %} Item</h2>
+<a href="/Clientes/Lista">Ia Clientes...</a>
 <form method="post">
-    {% csrf_token %}
+    {% csrf_token %} 
     {{ form.as_p }}
     <button type="submit">Guardar</button>
 </form>

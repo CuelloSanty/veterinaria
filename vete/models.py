@@ -116,7 +116,7 @@ class Mascota(models.Model):
     nombre = models.CharField(max_length=30)
     raza = models.CharField(max_length=30,  blank=True, null=True)
     edad = models.IntegerField( blank=True, null=True)
-    cliente = models.ForeignKey(Cliente,related_name='Clientes', on_delete=models.PROTECT)
+    cliente = models.ForeignKey(Cliente, related_name='Clientes', on_delete=models.PROTECT)
     
     def __str__(self):
         return self.nombre

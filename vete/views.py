@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect
-from .forms import EmpleadoForm, AdelantoFormSet
-from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota
+from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet
+from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.urls import reverse_lazy
 
 
-def index(request):
-    return render(request,'index.html')
+# ----------------------------- Index -----------------------------------
+def index_public(request):
+    return render(request,"index.html")
 
+def index_private(request): 
+    return render(request, 'Admin/index_admin.html')
+# ----------------------------------------------------------------------[End]
 
 # --------------------> Articulos
 class Articulos_vista:
@@ -69,20 +73,19 @@ class EmpViews(ListView):
 def empleado_create(request):
     if request.method == 'POST':
         empleado_form = EmpleadoForm(request.POST)
-        adelanto_formset = AdelantoFormSet(request.POST, queryset=Adelanto.objects.none())
+        adelanto_formset = AdelantoFormSet(request.POST)
         
         if empleado_form.is_valid() and adelanto_formset.is_valid():
-            empleado = empleado_form.save()
-            adelantos = adelanto_formset.save(commit=False)
-            for adelanto in adelantos:
-                adelanto.empleado = empleado
-                adelanto.save()
-            return redirect('')
+            emp = empleado_form.save()
+            adelanto_formset.instance = emp
+            adelanto_formset.save()
+          
+            return redirect('/emp/')
         else:
-            return redirect('')  # Cambia 'success_url' por la URL a la que quieras redirigir
+            return redirect('/inde-admin/')  # Cambia 'success_url' por la URL a la que quieras redirigir
     else:
         empleado_form = EmpleadoForm()
-        adelanto_formset = AdelantoFormSet(queryset=Adelanto.objects.none())
+        adelanto_formset = AdelantoFormSet()
     
     return render(request, 'Admin/Empleados/empleado_form.html', {
         'empleado_form': empleado_form,
@@ -93,19 +96,17 @@ def empleado_modif(request, pk):
     ins = Empleado.objects.get(pk=pk)
     if request.method == 'POST':
         empleado_form = EmpleadoForm(request.POST, instance=ins)
-        adelanto_formset = AdelantoFormSet(request.POST)
+        adelanto_formset = AdelantoFormSet(request.POST, instance=ins)
         if empleado_form.is_valid() and adelanto_formset.is_valid():
             empleado = empleado_form.save()
-            adelantos = adelanto_formset.save(commit=False)
-            for adelanto in adelantos:
-                adelanto.empleado = empleado
-                adelanto.save()
-            return redirect('/')
-        return redirect('/')
+            adelanto_formset.instance = empleado
+            adelanto_formset.save()
+            return redirect('/emp/')
+        return redirect('/index-admin/')
 
     else:
         empleado_form = EmpleadoForm(instance=ins)
-        adelanto_formset = AdelantoFormSet()
+        adelanto_formset = AdelantoFormSet(instance=ins)
         return render(request, 'Admin/Empleados/empleado_form.html',{
             'empleado_form': empleado_form,
             'adelanto_formset': adelanto_formset,
@@ -164,6 +165,7 @@ class Client_Delete(cliente_mainclass, DeleteView):
 
 
 
+
 # ------------------------   Mascota ----------------------------------
 class mascota_mainclass:
     model = Mascota
@@ -183,4 +185,22 @@ class Masc_Update(mascota_mainclass, UpdateView):
 
 class Masc_Delete(mascota_mainclass, DeleteView):
     template_name = "Admin/Mascota/delete.html"
-# -------------------- Mascota --------------------------------------[End]
+# ------------------------------- Mascota --------------------------------------[End]
+
+
+
+# ---------------------------- Atencion ----------------------------------------
+class Atencion_List(ListView):
+    model = Atencione
+    template_name = "Admin/Atencion/lista.html"
+    paginate_by = 3
+    context_object_name = "Atencion"
+def Atencion_Create(request):
+    if request.method == "POST":
+        pass
+    else:
+        form = AtencionForm()
+        formset = ArtAtencionFormSet(queryset=ArticuloAtencion.objects.none())
+        return render(request, 'Admin/Atencion/form.html',{"form":form, "formset":formset})
+
+# ---------------------------- Atencion ----------------------------------------[End]
