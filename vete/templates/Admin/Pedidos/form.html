@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Empleado</title>
+</head>
+<body>
+    <h1></h1>
+    <a href="/Pedidos/Lista/">Ia inicio del Lista de pedidos</a>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ formset.management_form }}
+        {% for f in formset %}
+            {{ f.as_p }}
+        {% endfor %}
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
+
+

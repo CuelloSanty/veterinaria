@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet
-from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion
+from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet, PedidoForm, DetallePedidoFormSet
+from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -195,12 +195,87 @@ class Atencion_List(ListView):
     template_name = "Admin/Atencion/lista.html"
     paginate_by = 3
     context_object_name = "Atencion"
+
 def Atencion_Create(request):
     if request.method == "POST":
-        pass
+        form = AtencionForm(request.POST)
+        formset = ArtAtencionFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            form = form.save()
+            formset.instance = form
+            formset.save()
     else:
         form = AtencionForm()
-        formset = ArtAtencionFormSet(queryset=ArticuloAtencion.objects.none())
+        formset = ArtAtencionFormSet()
         return render(request, 'Admin/Atencion/form.html',{"form":form, "formset":formset})
 
+def Atencion_Update(request, pk):
+    ins = Atencione.objects.get(pk=pk)
+    if request.method == "POST":
+        form = AtencionForm(request.POST, instance=ins)
+        formset = ArtAtencionFormSet(request.POST, instance=ins)
+        if form.is_valid() and formset.is_valid():
+            form = form.save()
+            formset.instance = form
+            formset.save()
+            return redirect('/Atencion/Lista/')
+    else:
+        form = AtencionForm(instance=ins)
+        formset = ArtAtencionFormSet(instance=ins)
+        return render(request, 'Admin/Atencion/form.html',{"form":form, "formset":formset})
+def Atencion_Delete(request, pk):
+    obj = Atencione.objects.get(pk=pk)
+    if request.method == "POST":
+        try:
+            obj.delete()
+            return redirect('/Atenciones/Lista')
+        except:
+            print("Ta mal wacho")
+    return render(request, 'Admin/Atencion/delete.html')
 # ---------------------------- Atencion ----------------------------------------[End]
+
+# ---------------------------- Pedidos -------------------------------------------
+class Pedidos_List(ListView):
+    model = Pedido
+    template_name = "Admin/Pedidos/lista.html"
+    paginate_by = 3
+    context_object_name = "Pedidos"
+
+def Pedidos_Create(request):
+    if request.method == "POST":
+        form = PedidoForm(request.POST)
+        formset = DetallePedidoFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            form = form.save()
+            formset.instance = form
+            formset.save()
+    else:
+        form = PedidoForm()
+        formset = DetallePedidoFormSet()
+        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset})
+
+def Pedidos_Update(request, pk):
+    ins = Pedido.objects.get(pk=pk)
+    if request.method == "POST":
+        form = PedidoForm(request.POST, instance=ins)
+        formset = DetallePedidoFormSet(request.POST, instance=ins)
+        if form.is_valid() and formset.is_valid():
+            form = form.save()
+            formset.instance = form
+            formset.save()
+            return redirect('/Pedidos/Lista/')
+    else:
+        form = PedidoForm(instance=ins)
+        formset = DetallePedidoFormSet(instance=ins)
+        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset})
+
+def Pedidos_Delete(request, pk):
+    obj = Pedido.objects.get(pk=pk)
+    if request.method == "POST":
+        try:
+            obj.delete()
+            return redirect('/Atenciones/Lista')
+        except:
+            print("Ta mal wacho")
+    return render(request, 'Admin/Pedidos/delete.html')
+# ---------------------------- Pedidos -------------------------------------------[End]

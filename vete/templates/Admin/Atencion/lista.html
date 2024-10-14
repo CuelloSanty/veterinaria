@@ -1,1 +1,10 @@
 <a href="/Atencion/create">Add..</a>
+
+{% for a in Atencion %}
+<div class="cont">
+	<p>Mascota:{{a.mascota}}</p>
+	<p>Tipo:{{a.tipo}}</p>
+	<a href="/Atencion/edit/{{a.id}}">Modificar</a>
+	<a href="/Atencion/delete/{{a.id}}">delete</a>
+</div>
+{% endfor %}

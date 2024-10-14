@@ -33,7 +33,12 @@ urlpatterns = [
 
     path('Atenciones/Lista' ,views.Atencion_List.as_view(), name="Atencion lista" ),
     path('Atencion/create/', views.Atencion_Create, name="empleado_create"),
-    path('Atencion/edit/<int:pk>/', views.empleado_modif, name="empleado_mofif"),
-    path('Atencion/delete/<int:pk>/', views.empleado_delete, name="empleado_mofif"),
+    path('Atencion/edit/<int:pk>/', views.Atencion_Update, name="empleado_mofif"),
+    path('Atencion/delete/<int:pk>/', views.Atencion_Delete, name="empleado_mofif"),
+
+    path('Pedidos/Lista' ,views.Pedidos_List.as_view(), name="Atencion lista" ),
+    path('Pedidos/create/', views.Pedidos_Create, name="empleado_create"),
+    path('Pedidos/edit/<int:pk>/', views.Pedidos_Update, name="empleado_mofif"),
+    path('Pedidos/delete/<int:pk>/', views.Pedidos_Delete, name="empleado_mofif"),
 
 ]

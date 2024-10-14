@@ -1,7 +1,8 @@
 from django import forms
 from django.forms import modelformset_factory, inlineformset_factory
-from .models import Empleado, Adelanto, Atencione, ArticuloAtencion
+from .models import Empleado, Adelanto, Atencione, ArticuloAtencion, Pedido, DetallePedido
 
+# Empleado Form
 class EmpleadoForm(forms.ModelForm):
     class Meta:
         model = Empleado
@@ -33,3 +34,17 @@ class ArtAtencion(forms.ModelForm):
 
 ArtAtencionFormSet = inlineformset_factory(Atencione, ArticuloAtencion, form=ArtAtencion, extra=2,can_delete=True)
 
+
+# Pedidos Forms
+class PedidoForm(forms.ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ('__all__')
+        exclude = ('id',)
+
+class DetallePedidoForm(forms.ModelForm):
+    class Meta:
+        model = DetallePedido
+        fields = ('__all__')
+        exclude = ('id',)
+DetallePedidoFormSet = inlineformset_factory(Pedido, DetallePedido, form=DetallePedidoForm, extra=2, can_delete=True)

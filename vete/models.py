@@ -155,3 +155,31 @@ class ArticuloAtencion(models.Model):
     def __str__(self):
         return str(self.id)
 # ------------------------------ Atencion --------------------------------
+
+
+# ---------------------------- Pedidos -------------------------------------------
+class Pedido(models.Model):
+    fecha = models.DateField()
+    MEDICAMENTO = 'Med'
+    ALIMENTO = 'Alim'
+    ACCESORIO = 'Acc'
+    OTRO = 'Otro'
+    tipo = [
+        ('Med', 'Medicamento'),
+        ('Alim', 'Alimento'),
+        ('Acc', 'Accesorio'),
+    ]
+    tipo = models.CharField(max_length=5, choices=tipo, default=MEDICAMENTO)
+    proveedor = models.ForeignKey(Proveedore,related_name='Proveedores', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.id)    
+
+class DetallePedido(models.Model):
+    articulo = models.ForeignKey(Articulo,related_name='Art', on_delete=models.CASCADE)
+    pedido = models.ForeignKey(Pedido,related_name='Ped', on_delete=models.CASCADE)
+    cantidad = models.IntegerField()
+
+    def __str__(self):
+        return str(self.id)
+# ---------------------------- Pedidos -------------------------------------------[End]
