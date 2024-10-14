@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet, PedidoForm, DetallePedidoFormSet
-from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido
+from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet, PedidoForm, DetallePedidoFormSet, VentaForm, VentaFormSet
+from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -249,6 +249,7 @@ def Pedidos_Create(request):
             form = form.save()
             formset.instance = form
             formset.save()
+            return redirect('/Pedidos/Lista/')
     else:
         form = PedidoForm()
         formset = DetallePedidoFormSet()
@@ -279,3 +280,50 @@ def Pedidos_Delete(request, pk):
             print("Ta mal wacho")
     return render(request, 'Admin/Pedidos/delete.html')
 # ---------------------------- Pedidos -------------------------------------------[End]
+
+# ---------------------------- Ventas --------------------------------------------
+class Ventas_List(ListView):
+    model = Venta
+    template_name = "Admin/Ventas/lista.html"
+    paginate_by = 3
+    context_object_name = "Ventas"
+
+def Ventas_Create(request):
+    if request.method == "POST":
+        form = VentaForm(request.POST)
+        formset = VentaFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            form = form.save()
+            formset.instance = form
+            formset.save()
+        return redirect('/Ventas/Lista/')
+    else:
+        form = VentaForm()
+        formset = VentaFormSet()
+        return render(request, 'Admin/Ventas/form.html',{"form":form, "formset":formset})
+
+def Ventas_Update(request, pk):
+    ins = Venta.objects.get(pk=pk)
+    if request.method == "POST":
+        form = VentaForm(request.POST, instance=ins)
+        formset = VentaFormSet(request.POST, instance=ins)
+        if form.is_valid() and formset.is_valid():
+            form = form.save()
+            formset.instance = form
+            formset.save()
+            return redirect('/Ventas/Lista/')
+    else:
+        form = VentaForm(instance=ins)
+        formset = VentaFormSet(instance=ins)
+        return render(request, 'Admin/Ventas/form.html',{"form":form, "formset":formset})
+
+def ventas_Delete(request, pk):
+    obj = Venta.objects.get(pk=pk)
+    if request.method == "POST":
+        try:
+            obj.delete()
+            return redirect('/Ventas/Lista/')
+        except:
+            print("Ta mal wacho")
+    return render(request, 'Admin/Ventas/delete.html')
+# ---------------------------- Ventas --------------------------------------------[End]

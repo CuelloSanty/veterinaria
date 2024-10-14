@@ -183,3 +183,22 @@ class DetallePedido(models.Model):
     def __str__(self):
         return str(self.id)
 # ---------------------------- Pedidos -------------------------------------------[End]
+
+
+class Venta(models.Model):
+    id = models.AutoField(primary_key=True)
+    fecha = models.DateField()
+    cliente =  models.ForeignKey(Cliente,related_name='CLientes', on_delete=models.PROTECT)
+    empleado = models.ForeignKey(Empleado,related_name='EMpleados',on_delete=models.PROTECT)
+
+    def __str__(self):
+        return str(self.id)
+
+class DetalleVenta(models.Model):
+    id = models.AutoField(primary_key=True)
+    venta = models.ForeignKey(Venta,related_name='VEntas', on_delete=models.CASCADE)
+    articulo = models.ForeignKey(Articulo,related_name='ARticulos', on_delete=models.CASCADE)
+    cantidad = models.DecimalField(max_digits=4,decimal_places=3)
+
+    def __str__(self):
+        return str(self.id)

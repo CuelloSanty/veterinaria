@@ -1,0 +1,10 @@
+<a href="/Ventas/create">Add..</a>
+
+{% for a in Ventas %}
+<div class="cont">
+	<p>Cliente :{{ a.cliente }}</p>
+	<p>Tipo :{{ a.empleado }}</p>
+	<a href="/Ventas/edit/{{a.id}}">Modificar</a>
+	<a href="/Ventas/delete/{{a.id}}">delete</a>
+</div>
+{% endfor %}

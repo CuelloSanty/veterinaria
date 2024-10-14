@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Empleado, Adelanto, Proveedore, Articulo, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido
+from .models import Empleado, Adelanto, Proveedore, Articulo, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta
 
 class AdelantoInline(admin.TabularInline):
     model = Adelanto
@@ -18,8 +18,17 @@ class ArtAtenAdmin(admin.ModelAdmin):
 class PedidoInline(admin.TabularInline):
     model = DetallePedido
     extra = 2
+
 class PedidoAdmin(admin.ModelAdmin):
     inlines = [PedidoInline]
+
+class VentaInline(admin.TabularInline):
+    model = DetalleVenta
+    extra = 2
+
+class VentaAdmin(admin.ModelAdmin):
+    inlines = [VentaInline]
+
 
 admin.site.register(Empleado, EmpleadoAdmin)
 admin.site.register(Adelanto)
@@ -29,6 +38,9 @@ admin.site.register(ArticuloAtencion)
 
 admin.site.register(Pedido, PedidoAdmin)
 admin.site.register(DetallePedido)
+
+admin.site.register(Venta, VentaAdmin)
+admin.site.register(DetalleVenta)
 
 admin.site.register(Proveedore)
 admin.site.register(Articulo)
