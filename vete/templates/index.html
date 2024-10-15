@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="scripts/main.js"></script>
+
+  <title>Inicio | Clinica Veterinaria</title>
+
+  <link rel="stylesheet" href="static/style/index.css">
+
+  <meta name= "robots" content = "index, follow, location" >
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+  <!-- <a href="mailto:miemail@gmail.com" style="padding: 10px 20px; background-color: #e74c3c; color: white; text-decoration: none; border-radius: 5px;">¡Contáctanos!</a> -->
+  <meta name="theme-color" content="#09f">
+  <meta name="description" content="Veterinaria La Cucha acompañado de todo el cuidado y cariño">
+
+</head>
+<script>
+  function showSuccessModal() {
+      // Obtener el textarea
+      var questionTextarea = document.querySelector('.faq textarea');
+      
+      // Limpiar el contenido del textarea
+      questionTextarea.value = '';
+
+      // Mostrar la modal
+      var myModal = new bootstrap.Modal(document.getElementById('successModal'), {
+          keyboard: false // Opcional: permite cerrar la modal al presionar Esc
+      });
+      myModal.show();
+  }
+</script>
+
+<body>
+<main>
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="3000">
+        <img src="{% static 'images/foto1.png' %}" alt="imgen-vete" class="d-block w-100 imgv">
+      </div>
+
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="{% static 'images/foto4.png' %}" alt="imgen-vete" class="d-block w-100 imgv">
+      </div>
+
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="{% static 'images/foto5.png' %}" alt="imgen-vete" class="d-block w-100 imgv">
+      </div>
+
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="{% static 'images/foto6.png' %}" alt="imgen-vete" class="d-block w-100 imgv">
+      </div>
+
+      <div class="carousel-item"data-bs-interval="3000">
+        <img src="{% static 'images/foto7.png' %}" alt="imgen-vete" class="d-block w-100 imgv">
+      </div>
+
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="{% static 'images/foto8.png' %}" alt="imgen-vete" class="d-block w-100 imgv">
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="{% static 'images/foto9.png' %}" alt="imgen-vete" class="d-block w-100 imgv">
+      </div>
+
+
+    </div>
+    
+    <!-- Controles de navegación -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+
+  <div class="derecho">
+    <div id="titulo"><h2><center>AMOR POR LAS MASCOTAS</center></h2></div>
+    <div id="descripcion"><p>Clínica de pequeños y grandes animales.
+    Diagnóstico de gestación temprana - Servicio de ecografía móvil - Traumatología - Cirugía - Análisis de laboratorio - Internación - Peluquería Canina -
+    Alimento balanceado - Artículos varios.</p><br></div>
+
+    <div class="contenedor-info">
+      <div class="icono"><img src="{% static 'images/ubicacion.svg' %}" alt="ubicacion" style="height: 25px; width: 25px;"></a></div>
+      <div class="categoria">Ubicación:</div>
+      <div class="info">Felipe Erdman 290, Villa Dolores</div>
+    </div>
+    <div class="contenedor-info">
+      <div class="icono"><img src="{% static 'images/telefono.svg' %}" alt="telefono" style="height: 25px; width: 25px;"></a></div>
+      <div class="categoria">Teléfono:</div>
+      <div class="info">3544-424084</div>
+    </div>
+    <div class="contenedor-info">
+      <div class="icono"><img src="{% static 'images/reloj.svg' %}" alt="reloj" style="height: 25px; width: 25px;"></a></div>
+      <div class="categoria">Horario De Atención:</div>
+      <div class="info">09:30 - 13:30 y 17:00 -21:00</div>
+    </div>
+  </div>
+
+</main>
+</body>
+<footer>
+  <center>
+    <div class="col-md-6 text-center">
+      <h5>Nuestras Marcas</h5>
+      <div class="d-flex justify-content-center align-items-center">
+          <div class="marca-container">
+              <img src="{% static 'images/raza.png' %}" alt="Marca 1" class="marca-img">
+          </div>
+          <div class="marca-container">
+              <img src="{% static 'images/pedigree.png' %}" alt="Marca 2" class="marca-img">
+          </div>
+          <div class="marca-container">
+              <img src="{% static 'images/royal.png' %}" alt="Marca 3" class="marca-img">
+          </div>
+          <div class="marca-container">
+              <img src="{% static 'images/eukanuba.png' %}" alt="Marca 4" class="marca-img">
+          </div>
+      </div>
+  </div>
+  
+
+        
+      
+      <div class="faq">
+          <h4>Dudas o consultas: </h4>
+          <textarea placeholder="Escribe aquí tu pregunta..."></textarea>
+          <button class="submit-btn" onclick="showSuccessModal()">Enviar</button>
+      </div>
+      <!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="successModalLabel">Éxito!</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              Pronto nos estaremos comunicando con vos, gracias.
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+          
+      </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>&copy; 2024 Veterinaria La Cucha. Todos los derechos reservados.</p>
+  <a class="back-to-top" href="#titulo">INICIO</a>
+</div>
+  </center>
+</footer>
+
+</html>
+{% endblock %}

@@ -1,0 +1,271 @@
+body {
+    background-color: #f0f8ff; /* Color azul claro */
+    color: #333; /* Texto oscuro para mejorar el contraste */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+main {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 40px;
+    margin-top: 20px;
+    min-height: calc(100vh - 140px); /* Calcula el alto de la pantalla menos el tamaño del footer */
+  }
+
+.izquierdo {
+    width: 50%;
+    overflow: hidden;
+}
+
+.derecho {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+p {
+    color: #7f8c8d;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+.imgv {
+    width: 100%;
+}
+
+.contenedor-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    border-bottom: 1px solid #0c2332;
+}
+
+.contenedor-info:hover {
+    background-color: #3a99f8; /* Rojo al pasar el cursor */
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+.icono {
+    margin-right: 10px;
+}
+
+.categoria {
+    margin-right: 50px;
+    color: #2c3e50;
+    width: 100px;
+}
+
+.info {
+    color: #2c3e50;
+    flex: 1; /* Toma el espacio restante para que todos se alineen correctamente */
+}
+
+#titulo {
+    border-bottom: 1px solid #0c2332;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 5px;
+}
+
+#descripcion {
+    border-bottom: 1px solid #0c2332;
+    width: 100%;
+    padding-top: 20px;
+}
+
+section {
+    display: flex;
+    width: 33%;
+    height: 100%;
+}
+
+section img {
+    width: 100%;
+    object-fit: cover;
+    opacity: .8;
+    transition: .5s ease;
+}
+
+section img:hover {
+    cursor: crosshair;
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+.urgente {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #0c2332;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1000;
+    margin-left: 0;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    border-top: 5px solid #0f345a; /* Borde superior rojo */
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
+footer a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: #3a99f8; /* Rojo al hacer hover */
+}
+
+footer img {
+    width: 80px; /* Cambia el tamaño de las imágenes */
+    margin: 10px; /* Ajusta el espacio entre las imágenes */
+}
+
+h2 {
+    font-weight: 700; /* Títulos más gruesos */
+}
+
+p, .info {
+    font-weight: 300; /* Texto más ligero */
+}
+
+.contenedor-info {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: box-shadow 0.3s ease;
+}
+
+.contenedor-info:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  
+}
+
+.carousel {
+    width: 50%;
+    height: 500px; /* Ajusta el alto del carrusel */
+    margin-bottom: 20px; /* Añade espacio debajo del carrusel */
+}
+
+.carousel-item img{
+    width: 100%;
+    height: 500px; /* Asegura que las imágenes llenen el carrusel */
+    object-fit: cover; /* Asegura que la imagen se ajuste al espacio */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Añade fondo oscuro a los controles */
+    border-radius: 50%; /* Redondea los controles */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.img-fluid m-2 {
+    width: 150px;
+    margin: 10px;
+}
+
+.footer {
+    width: 100%; /* Ancho completo */
+    padding: 15px; /* Espaciado interno */
+    text-align: center; /* Centrar texto */
+    position: relative; /* Para el posicionamiento */
+    bottom: 0; /* Fijar en la parte inferior */
+}
+
+.footer p {
+    margin: 0; /* Eliminar margen */
+    color: rgb(255, 255, 255); /* Color del texto */
+}
+
+.back-to-top {
+    display: inline-block; /* Mostrar como bloque */
+    margin-top: 10px; /* Espacio superior */
+    text-decoration: none; /* Sin subrayado */
+    color: #48a6e8; /* Color del enlace */
+    transition: color 0.3s; /* Transición suave */
+}
+
+.back-to-top:hover {
+    color: #0056b3; /* Color al pasar el mouse */
+}
+
+.faq {
+    margin-top: 20px; /* Espacio superior */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 80%; /* Ancho del campo de preguntas frecuentes */
+    max-width: 600px; /* Ancho máximo */
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto; /* Centrar horizontalmente */
+}
+
+.faq h4 {
+    color: rgb(255, 255, 255); /* Color del título de preguntas frecuentes */
+}
+
+.faq textarea {
+    width: 100%; /* Ancho completo del textarea */
+    height: 100px; /* Altura del textarea */
+    margin-top: 10px; /* Espacio superior */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.submit-btn {
+    margin-top: 10px; /* Espacio superior */
+    padding: 10px 15px; /* Espaciado interno */
+    background-color: rgb(6, 57, 116); /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.submit-btn:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
+}
+
+.marca-container {
+    width: 100px;
+    height: 90px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.marca-img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+}
