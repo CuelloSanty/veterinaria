@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <a href="/Proveedor/add/">Add</a>
 {% for p in proveedores %}
 <div class="prov">
@@ -5,3 +8,4 @@
 	
 </div>
 {% endfor %}
+{% endblock  %}

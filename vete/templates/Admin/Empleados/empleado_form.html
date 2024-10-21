@@ -1,7 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Empleado</title>
+    {% block css %}
+<link rel="stylesheet" href="{% static 'style/forms.css' %}">
+{% endblock css %}
 </head>
 <body>
     <h1>Empleado</h1>
@@ -15,5 +19,11 @@
         {% endfor %}
         <button type="submit">Guardar</button>
     </form>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var input = document.getElementById('id_FechaContratacion');
+            input.setAttribute('type', 'date');
+        });
+</script>
 </body>
 </html>

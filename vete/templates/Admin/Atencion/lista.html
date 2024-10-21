@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <a href="/Atencion/create">Add..</a>
 
 {% for a in Atencion %}
@@ -8,3 +10,4 @@
 	<a href="/Atencion/delete/{{a.id}}">delete</a>
 </div>
 {% endfor %}
+{% endblock  %}

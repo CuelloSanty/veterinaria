@@ -155,6 +155,7 @@ class Client_List(cliente_mainclass, ListView):
 
 class Client_Create(cliente_mainclass, CreateView):
     template_name = "Admin/Cliente/form.html"
+    success_url = "/Cliente/Lista/"
 
 class Client_Update(cliente_mainclass, UpdateView):
     template_name = "Admin/Cliente/form.html"

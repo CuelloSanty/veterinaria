@@ -1,7 +1,17 @@
-<h2>{% if view.action == 'add' %} Crear {% else %}Actualizar{% endif %} Item</h2>
-<a href="/Clientes/Lista">Ia Clientes...</a>
-<form method="post">
-    {% csrf_token %} 
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+{% load static %}
+<head>
+    <title>Cliente</title>
+    {% block css %}
+<link rel="stylesheet" href="{% static 'style/forms.css' %}">
+{% endblock css %}
+</head>
+
+<body>
+    <h2>{% if view.action == 'add' %} Crear {% else %}Actualizar{% endif %} Item</h2>
+    <a href="/Clientes/Lista">Ia Clientes...</a>
+    <form method="post">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+</body>
