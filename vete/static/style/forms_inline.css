@@ -1,0 +1,126 @@
+:root {
+  --color-50: #f0f6fe;
+  --color-100: #ddeafc;
+  --color-200: #c3dbfa;
+  --color-300: #9bc5f5;
+  --color-400: #6ba6ef;
+  --color-500: #538cea;
+  --color-600: #3368dd;
+  --color-700: #2a54cb;
+  --color-800: #2845a5;
+  --color-900: #263e82;
+  --color-950: #1b2750;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f7f8fa;
+}
+
+form{
+  width: 90%;
+}
+a{
+  text-decoration: none;
+  color: rgb(15, 29, 146);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+a svg{
+  width: 20px;
+}
+input, select{
+  padding: 10px;
+  width: 100%;
+  background-color: var(--color-50);
+  color: var(--color-400);
+  outline: none;
+  border: none;
+  font-size: medium;
+  border-radius: 7px;
+
+
+}
+
+label{
+  font-size: small;
+}
+.main-conteiner{
+ 
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.form{
+  padding: 10px;
+  width: 50%;
+}
+
+.formset-conteiner{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+.add{
+  margin-bottom: 10px;
+  color: var(--color-700);
+  background-color: var(--color-100);
+  box-shadow: 5px 5px var(--color-200);
+  border-radius: 10px;
+  border: none;
+  padding: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transition: all .2s;
+}
+.add svg{
+  width: 30px;
+ 
+}
+
+.add:active{
+  transform: scale(0.999);
+  box-shadow: 0 0 0 0;
+
+
+}
+.formset{
+  width: 100%;
+  overflow: scroll;
+  height: 20rem;
+}
+.submit{
+  background-color: var(--color-100);
+  color: var(--color-500);
+  border: none;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  transition: all .5s;
+}
+.submit:active{
+  transform: scale(0.96);
+}

@@ -4,20 +4,34 @@
 <head>
     <title>Pedidos</title>
     {% block css %}
-<link rel="stylesheet" href="{% static 'style/forms.css' %}">
+<link rel="stylesheet" href="{% static 'style/forms_inline.css' %}">
 {% endblock css %}
+ 
 </head>
 <body>
     <h1></h1>
-    <a href="/Pedidos/Lista/">Ia inicio del Lista de pedidos</a>
-    <form method="POST">
+    <a href="/Pedidos/Lista/"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+</svg>Lista de pedidos</a>
+    <form method="POST"  class="w-50">
+        <button type="submit" class="submit">Guardar pedido</button>
+        <div class="main-conteiner">
         {% csrf_token %}
+        <div class="form">
         {{ form.as_p }}
+        </div>
+        <div class="formset-conteiner">
+        <button class="add"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+</svg> Agregar Producto</button>
+        <div class="formset">
         {{ formset.management_form }}
         {% for f in formset %}
             {{ f.as_p }}
         {% endfor %}
-        <button type="submit">Guardar</button>
+        </div>
+        </div>
+        </div>
     </form>
 </body>
 </html>
