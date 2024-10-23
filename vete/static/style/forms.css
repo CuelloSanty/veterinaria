@@ -6,7 +6,8 @@
 
 body {
     background-color:white; /* Color de fondo más claro */
-    margin: 0;
+    margin: 20px;
+    padding: 20px;
 }
 
 .main {
@@ -14,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    margin: 20px auto; /* Centrar el formulario en la página */
+    margin: 20px; /* Centrar el formulario en la página */
     max-width: 500px; /* Ancho máximo del formulario */
     background-color: #343a40; /* Fondo blanco para el formulario */
     border-radius: 8px; /* Bordes redondeados */

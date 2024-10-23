@@ -129,15 +129,31 @@ class proveedor_mainclass:
 class Prov_List(proveedor_mainclass, ListView):
     template_name = "Admin/Proveedor/lista.html"
     context_object_name = "proveedores"
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(Q(nombre__icontains=query) | Q(cuit__icontains=query))
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
 
 class Prov_Create(proveedor_mainclass, CreateView):
     template_name = "Admin/Proveedor/form.html"
+    success_url = '/Proveedor/Lista/'
 
 class Prov_Update(proveedor_mainclass, UpdateView):
     template_name = "Admin/Proveedor/form.html"
+    success_url = '/Proveedor/Lista/'
 
 class Prov_Delete(proveedor_mainclass, DeleteView):
     template_name = "Admin/Proveedor/delete.html"
+    success_url = '/Proveedor/Lista/'
 
 # ------------------------- Proveedores ------------------------------[end]
 
