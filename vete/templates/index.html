@@ -132,30 +132,29 @@
 
         
       
-      <div class="faq">
-          <h4>Dudas o consultas: </h4>
-          <textarea placeholder="Escribe aquí tu pregunta..."></textarea>
-          <button class="submit-btn" onclick="showSuccessModal()">Enviar</button>
-      </div>
-      <!-- Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Ventana
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="successModalLabel">Éxito!</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              Pronto nos estaremos comunicando con vos, gracias.
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-          
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
+        <p>Ya nos comunicaremos, con usted</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
   </div>
 </div>
-
 <div class="footer">
   <p>&copy; 2024 Veterinaria La Cucha. Todos los derechos reservados.</p>
   <a class="back-to-top" href="#titulo">INICIO</a>
