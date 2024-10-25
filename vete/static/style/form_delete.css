@@ -1,0 +1,90 @@
+:root {
+  --color-50: #fff1f1;
+  --color-100: #ffdfdf;
+  --color-200: #ffc5c5;
+  --color-300: #ff9c9c;
+  --color-400: #ff6464;
+  --color-500: #ff3333;
+  --color-600: #ee1414;
+  --color-700: #c80d0d;
+  --color-800: #a90f0f;
+  --color-900: #891313;
+  --color-950: #4b0404;
+}
+
+*{
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   text-decoration: none;
+   transition: all .6s;
+}
+body{
+   
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   min-height: 50vh;
+}
+
+.link-back{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   font-family: sans-serif;
+   color: var(--color-950);
+}
+.link-back svg{
+   width: 20px;
+   margin: 10px;
+}
+
+
+.del{
+   padding: 10px;
+   
+   font-size: medium;
+
+   background-color: var(--color-100);
+   color: var(--color-600);
+   border: none;
+   border-radius: 7px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+   
+}
+.del svg{
+   width: 30px;
+   margin-right: 5rem;
+}
+
+.del:active{
+   transform: scale(0.96);
+}
+.del:hover{
+   color: var(--color-100);
+   background-color: var(--color-400);
+}
+.del:hover svg{
+   color: var(--color-100);
+   transform: rotate(266deg);
+   
+}
+
+.alert-container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #ffdddd;
+            border: 1px solid #f44336;
+            color: #f44336;
+            border-radius: 5px;
+        }
+        .alert-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+        }

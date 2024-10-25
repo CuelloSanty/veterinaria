@@ -10,6 +10,9 @@
   --color-800: #2845a5;
   --color-900: #263e82;
   --color-950: #1b2750;
+  {% if var == "edit" %}
+  --kk--100:black;
+  {% endif %}
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
@@ -29,7 +32,7 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  background-color: #f7f8fa;
+  background-color: ;
 }
 
 form{

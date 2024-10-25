@@ -5,7 +5,7 @@ urlpatterns = [
     path('', views.index_public, name='Inicio'),
     path('index-admin/', views.index_private, name='cosas'),
 
-    path('Empleado/Lista' ,views.EmpViews.as_view(), name="empleados lista" ),
+    path('Empleado/Lista/' ,views.EmpViews.as_view(), name="empleados lista" ),
     path('Empleado/create/', views.empleado_create, name="empleado_create"),
     path('Empleado/modif/<int:pk>/', views.empleado_modif, name="empleado_mofif"),
     path('Empleado/delete/<int:pk>/', views.empleado_delete, name="empleado_mofif"),

@@ -80,9 +80,9 @@ def empleado_create(request):
             adelanto_formset.instance = emp
             adelanto_formset.save()
           
-            return redirect('/emp/')
+            return redirect('/Empleado/Lista/')
         else:
-            return redirect('/inde-admin/')  # Cambia 'success_url' por la URL a la que quieras redirigir
+            return redirect('/index-admin/')  # Cambia 'success_url' por la URL a la que quieras redirigir
     else:
         empleado_form = EmpleadoForm()
         adelanto_formset = AdelantoFormSet()
@@ -101,7 +101,7 @@ def empleado_modif(request, pk):
             empleado = empleado_form.save()
             adelanto_formset.instance = empleado
             adelanto_formset.save()
-            return redirect('/emp/')
+            return redirect('/Empleado/Lista/')
         return redirect('/index-admin/')
 
     else:
@@ -109,13 +109,13 @@ def empleado_modif(request, pk):
         adelanto_formset = AdelantoFormSet(instance=ins)
         return render(request, 'Admin/Empleados/empleado_form.html',{
             'empleado_form': empleado_form,
-            'adelanto_formset': adelanto_formset,
+            'adelanto_formset': adelanto_formset,"var":"edit"
     })
 def empleado_delete(request, pk):
     emp = Empleado.objects.get(pk=pk)
     if request.method == 'POST':
         emp.delete()
-        return redirect('/emp/')
+        return redirect('/Empleado/Lista/')
     return render(request, 'Admin/Empleados/delete.html', {'emp': emp})
 # -------------------------> Emplados <-------------------------------
 

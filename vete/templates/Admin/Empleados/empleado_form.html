@@ -8,10 +8,31 @@
 {% endblock css %}
 </head>
 <body>
+    {% if var == "edit" %}
+    <style type="text/css">
+        :root {
+          --color-51: #fdfde9;
+          --color-100: #fafbc6;
+          --color-200: #f9f68f;
+          --color-300: #f5ea4f;
+          --color-400: #f0d91f;
+          --color-500: #e0c112;
+          --color-600: #c1970d;
+          --color-700: #a9780f;
+          --color-800: #805713;
+          --color-900: #6d4716;
+          --color-950: #3f2509;
+      }
+    </style>
+    {% endif %}
+    <style type="text/css">
+        
+    </style>
     <a href="/Empleado/Lista/"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
       </svg>Lista de Atencion</a>
           <form method="POST">
+
               <button type="submit" class="submit">Guardar Atencion</button>
               <div class="main-conteiner">
               {% csrf_token %}
