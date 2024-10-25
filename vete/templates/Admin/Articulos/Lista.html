@@ -10,6 +10,7 @@
     
         <link rel="author" href="humans.txt">
     </head>
+    <br>
     <body>
         
         <div id="contenido" class="container">
@@ -30,19 +31,38 @@
                 <a class="btn btn-primary w-100" href="/Articulos/add/">Nuevo...</a>
             </div>
         </div>
+
         <table class="table table-striped">
-            {% for a in Art %}
-            <tr>
-                <td>{{ a.nombre }}</td>
-                <td>Id_ :{{ a.codigo }}</td>
-                <td>
-                    <div class="d-flex justify-content-end align-items-end mb-3">
-            
-                        <a href="/Articulos/{{ a.codigo }}/edit/">Modificar</a>
-                        <a class="btn btn-danger ms-1" href="/Articulos/{{ a.codigo }}/delete/">Borrar</a>
-                    </div>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for a in Art %}
+                <tr>
+                    <td>{{ a.codigo }}</td>
+                    <td>{{ a.nombre }}</td>
+                    <td>{{ a.tipo }}</td>
+                    <td>{{ a.marca }}</td>
+                    <td>{{ a.cantidad }}</td>
+                    <td>{{ a.precio }}</td>
+    
+                    <td>
+                        <div class="d-flex justify-content-end align-items-end mb-3">
+                
+                            <a class="btn btn-warning ms-1"  href="/Articulos/{{a.codigo}}/edit">Modificar</a>
+                            <a class="btn btn-danger ms-1" href="/Articulos/{{a.codigo}}/delete/">Borrar</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
             {% endfor %}
         </table>
 

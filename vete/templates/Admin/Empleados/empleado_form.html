@@ -30,10 +30,10 @@
     </style>
     <a href="/Empleado/Lista/"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
-      </svg>Lista de Atencion</a>
+      </svg>Lista de Empleados</a>
           <form method="POST">
 
-              <button type="submit" class="submit">Guardar Atencion</button>
+              <button type="submit" class="submit">Guardar Empleado</button>
               <div class="main-conteiner">
               {% csrf_token %}
               <div class="form">
@@ -42,7 +42,7 @@
               <div class="formset-conteiner">
               <button class="add"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-      </svg> Agregar Producto</button>
+      </svg> Agregar Empleado</button>
               <div class="formset">
               {{ adelanto_formset.management_form }}
               {% for f in adelanto_formset %}

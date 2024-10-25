@@ -23,7 +23,7 @@ class Articulos_vista:
 class Art_list(Articulos_vista, ListView):
     template_name = 'admin/Articulos/Lista.html'
     context_object_name = "Art"
-    paginate_by = 2
+    paginate_by = 1
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -39,12 +39,17 @@ class Art_list(Articulos_vista, ListView):
 
 class Art_Create(Articulos_vista, CreateView):
     template_name = 'admin/Articulos/form.html'
+    success_url = '/Articulos/Lista/'
 
 class Art_Update(Articulos_vista, UpdateView):
     template_name = 'admin/Articulos/form.html'
+    success_url = '/Articulos/Lista/'
+    
 
 class Art_Delete(Articulos_vista, DeleteView):
     template_name = 'admin/Articulos/delete.html'
+    success_url = '/Articulos/Lista/'
+    
 # ---------------------> Articulos [End]
 
 
@@ -167,7 +172,20 @@ class cliente_mainclass:
 
 class Client_List(cliente_mainclass, ListView):
     template_name = "Admin/Cliente/lista.html"
+    paginate_by = 1
     context_object_name = "Cliente"
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(Q(nombre__icontains=query) | Q(telefono__icontains=query))
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
 
 class Client_Create(cliente_mainclass, CreateView):
     template_name = "Admin/Cliente/form.html"
@@ -193,9 +211,22 @@ class mascota_mainclass:
 class Masc_List(mascota_mainclass, ListView):
     template_name = "Admin/Mascota/lista.html"
     context_object_name = "Mascota"
+    paginate_by = 7
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(Q(nombre__icontains=query) | Q(raza__icontains=query))
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
 
 class Masc_Create(mascota_mainclass, CreateView):
     template_name = "Admin/Mascota/form.html"
+    success_url = "/Mascota/Lista/"
 
 class Masc_Update(mascota_mainclass, UpdateView):
     template_name = "Admin/Mascota/form.html"
@@ -210,7 +241,7 @@ class Masc_Delete(mascota_mainclass, DeleteView):
 class Atencion_List(ListView):
     model = Atencione
     template_name = "Admin/Atencion/lista.html"
-    paginate_by = 3
+    paginate_by = 1
     context_object_name = "Atencion"
 
 def Atencion_Create(request):

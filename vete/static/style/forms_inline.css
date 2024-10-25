@@ -10,9 +10,7 @@
   --color-800: #2845a5;
   --color-900: #263e82;
   --color-950: #1b2750;
-  {% if var == "edit" %}
-  --kk--100:black;
-  {% endif %}
+
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
@@ -32,7 +30,6 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  background-color: ;
 }
 
 form{
@@ -50,7 +47,7 @@ a{
 a svg{
   width: 20px;
 }
-input, select{
+input{
   padding: 10px;
   width: 100%;
   background-color: var(--color-50);
@@ -63,11 +60,21 @@ input, select{
 
 }
 
+select{
+  padding: 10px;
+  width: 100%;
+  background-color: var(--color-50);
+  color: var(--color-400);
+  outline: none;
+  border: none;
+  font-size: medium;
+  border-radius: 7px;
+}
+
 label{
   font-size: small;
 }
 .main-conteiner{
- 
   gap: 20px;
   display: flex;
   flex-direction: row;
