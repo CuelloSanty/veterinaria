@@ -129,32 +129,45 @@
       </div>
   </div>
   
-
-        
-      
-      <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Ventana
-</button>
+<!-- Campo de entrada y botón para enviar la duda -->
+<div class="container mt-4">
+  <h2>Escribe tu duda</h2>
+  <textarea class="form-control" id="userQuery" rows="4" style="width: 50%;" placeholder="Escribe aquí tu duda..."></textarea>
+  <button type="button" class="btn btn-primary mt-2" onclick="openModal()">Enviar</button>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmación de envío</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Ya nos comunicaremos, con usted</p>
+        <p>En breve nos comunicaremos con usted.</p> <!-- Mensaje estático -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  function openModal() {
+    const query = document.getElementById('userQuery').value;
+    if (query) {
+      const modal = new bootstrap.Modal(document.getElementById('exampleModal')); // Crea el modal
+      modal.show(); // Abre el modal
+    } else {
+      alert("Por favor, escribe una duda antes de enviar.");
+    }
+  }
+</script>
+
+
 <div class="footer">
   <p>&copy; 2024 Veterinaria La Cucha. Todos los derechos reservados.</p>
   <a class="back-to-top" href="#titulo">INICIO</a>
