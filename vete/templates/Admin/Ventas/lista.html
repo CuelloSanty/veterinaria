@@ -1,10 +1,91 @@
-<a href="/Ventas/create">Add..</a>
+{% extends 'base.html' %}
+{% block content %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ventas</title>
+    
+        <link rel="author" href="humans.txt">
+    </head>
+    <br>
+    <body>
+        
+        <div id="contenido" class="container">
+        <div id="titulo" class="row pb-3">
+            <h2 class="col-9 col-md-6">Ventas</h2>
+            <form method="GET" class="d-none d-md-table-cell col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" value="{{ query }}" \
+                        placeholder="Buscar en nombre o turno...">
+                    <button class="btn btn-primary text-light" type="submit">
+                        Buscar
+                    </button>
+                </div>
 
-{% for a in Ventas %}
-<div class="cont">
-	<p>Cliente :{{ a.cliente }}</p>
-	<p>Tipo :{{ a.empleado }}</p>
-	<a href="/Ventas/edit/{{a.id}}">Modificar</a>
-	<a href="/Ventas/delete/{{a.id}}">delete</a>
-</div>
-{% endfor %}
+               
+            </form>
+            <div class="col-3 col-md-2 text-end">
+                <a class="btn btn-primary w-100" href="/Ventas/create/">Nuevo...</a>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Empleado</th>
+					<th>Articulos</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for a in Ventas %}
+                <tr>
+                    <td>{{ a.fecha }}</td>
+                    <td>{{ a.cliente }}</td>
+                    <td>{{ a.empleado }}</td>
+    
+                    <td>
+                        <div class="d-flex justify-content-end align-items-end mb-3">
+                
+                            <a class="btn btn-warning ms-1"  href="/Ventas/edit/{{a.id}}">Modificar</a>
+                            <a class="btn btn-danger ms-1" href="/Ventas/delete/{{a.id}}">Borrar</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+
+        <div class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-primary mb-3" href="?page=1">
+                    Primera
+                </a>
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.previous_page_number }}">
+                    Anterior
+                </a>
+            {% endif %}
+
+            <span class="current-page btn btn-outline-light disabled text-primary mb-3">
+                {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.next_page_number }}">
+                    Siguiente
+                </a>
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.paginator.num_pages }}">
+                    Última
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    
+    </body>
+</html>
+{% endblock  %}

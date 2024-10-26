@@ -1,11 +1,90 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="/Pedidos/create/">Add...</a>
-{% for p in Pedidos %}
-<div>
-	<p>Proveedor:{{ p.proveedor }} Tipo:{{ p.tipo }}</p>
-	<a href="/Pedidos/edit/{{p.id}}">Edit</a>
-	<a href="/Pedidos/delete/{{p.id}}">Delete</a>
-</div>
-{% endfor %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ventas</title>
+    
+        <link rel="author" href="humans.txt">
+    </head>
+    <br>
+    <body>
+        
+        <div id="contenido" class="container">
+        <div id="titulo" class="row pb-3">
+            <h2 class="col-9 col-md-6">Pedidos</h2>
+            <form method="GET" class="d-none d-md-table-cell col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" value="{{ query }}" \
+                        placeholder="Buscar en nombre o turno...">
+                    <button class="btn btn-primary text-light" type="submit">
+                        Buscar
+                    </button>
+                </div>
+
+               
+            </form>
+            <div class="col-3 col-md-2 text-end">
+                <a class="btn btn-primary w-100" href="/Pedidos/create/">Nuevo...</a>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Proveedor</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for p in Pedidos %}
+                <tr>
+                    <td>{{ p.fecha }}</td>
+                    <td>{{ p.tipo }}</td>
+                    <td>{{ p.proveedor }}</td>
+    
+                    <td>
+                        <div class="d-flex justify-content-end align-items-end mb-3">
+                
+                            <a class="btn btn-warning ms-1"  href="/Pedidos/edit/{{p.id}}">Modificar</a>
+                            <a class="btn btn-danger ms-1" href="/Pedidos/delete/{{p.id}}">Borrar</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+
+        <div class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-primary mb-3" href="?page=1">
+                    Primera
+                </a>
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.previous_page_number }}">
+                    Anterior
+                </a>
+            {% endif %}
+
+            <span class="current-page btn btn-outline-light disabled text-primary mb-3">
+                {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.next_page_number }}">
+                    Siguiente
+                </a>
+                <a class="btn btn-outline-primary mb-3" href="?page={{ page_obj.paginator.num_pages }}">
+                    Última
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    
+    </body>
+</html>
 {% endblock  %}
