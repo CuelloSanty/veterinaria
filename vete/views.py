@@ -193,9 +193,13 @@ class Client_Create(cliente_mainclass, CreateView):
 
 class Client_Update(cliente_mainclass, UpdateView):
     template_name = "Admin/Cliente/form.html"
+    success_url = "/Cliente/Lista/"
+
 
 class Client_Delete(cliente_mainclass, DeleteView):
     template_name = "Admin/Cliente/lista.html"
+    success_url = "/Cliente/Lista/"
+
 # -------------------------   Cliente   ------------------------------[End]
 
 
@@ -212,6 +216,7 @@ class Masc_List(mascota_mainclass, ListView):
     template_name = "Admin/Mascota/lista.html"
     context_object_name = "Mascota"
     paginate_by = 7
+
     def get_queryset(self):
         queryset = super().get_queryset()
         query = self.request.GET.get('q')
@@ -230,9 +235,13 @@ class Masc_Create(mascota_mainclass, CreateView):
 
 class Masc_Update(mascota_mainclass, UpdateView):
     template_name = "Admin/Mascota/form.html"
+    success_url = "/Mascota/Lista/"
+
 
 class Masc_Delete(mascota_mainclass, DeleteView):
     template_name = "Admin/Mascota/delete.html"
+    success_url = "/Mascota/Lista/"
+
 # ------------------------------- Mascota --------------------------------------[End]
 
 
@@ -244,6 +253,20 @@ class Atencion_List(ListView):
     paginate_by = 1
     context_object_name = "Atencion"
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(Q(nombre__icontains=query) | Q(raza__icontains=query))
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
+
+
+
 def Atencion_Create(request):
     if request.method == "POST":
         form = AtencionForm(request.POST)
@@ -252,6 +275,7 @@ def Atencion_Create(request):
             form = form.save()
             formset.instance = form
             formset.save()
+        return redirect('/Atencion/Lista/')
     else:
         form = AtencionForm()
         formset = ArtAtencionFormSet()
@@ -276,7 +300,7 @@ def Atencion_Delete(request, pk):
     if request.method == "POST":
         try:
             obj.delete()
-            return redirect('/Atenciones/Lista')
+            return redirect('/Atencion/Lista')
         except:
             print("Ta mal wacho")
     return render(request, 'Admin/Atencion/delete.html')
@@ -323,7 +347,7 @@ def Pedidos_Delete(request, pk):
     if request.method == "POST":
         try:
             obj.delete()
-            return redirect('/Atenciones/Lista')
+            return redirect('/Pedidos/Lista')
         except:
             print("Ta mal wacho")
     return render(request, 'Admin/Pedidos/delete.html')

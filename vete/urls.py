@@ -31,7 +31,7 @@ urlpatterns = [
     path('Mascota/<int:pk>/delete/', views.Masc_Delete.as_view(), name="Delete"),
 
 
-    path('Atenciones/Lista/' ,views.Atencion_List.as_view(), name="Atencion lista" ),
+    path('Atencion/Lista/' ,views.Atencion_List.as_view(), name="Atencion lista" ),
     path('Atencion/create/', views.Atencion_Create, name="empleado_create"),
     path('Atencion/edit/<int:pk>/', views.Atencion_Update, name="empleado_mofif"),
     path('Atencion/delete/<int:pk>/', views.Atencion_Delete, name="empleado_mofif"),
