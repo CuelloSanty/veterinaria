@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
-{% block content %}
-<br>
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Proveedores Lista</title>
+        
+    </head>
+    <body>
+
+        {% block content %}
+        <br>
 <div id="contenido" class="container">
     <div id="titulo" class="row pb-3">
         <h2 class="col-9 col-md-6">Listado de Proveedores</h2>
@@ -16,38 +28,46 @@
             </div>
         </form>
         <div class="col-3 col-md-2 text-end">
-            <a class="btn btn-primary w-100" href="/Proveedor/add/">Nuevo...</a>
+            <a class="add" href="/Proveedor/add/">Nuevo...</a>
         </div>
     </div>
-    <table class="table table-striped">
-		<thead>
-			<tr>
-			<th>Cuit</th>
-			<th>Nombre</th>
-			<th>Dirección</th>
-			<th>Telefono</th>
-			<th>Email</th>
-		</tr>
-		</thead>
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+            <th>Cuit</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Telefono</th>
+            <th>Email</th>
+        </tr>
+        </thead>
 
-		<tbody>
-			{% for p in proveedores %}
-			<tr>
-				<td>{{ p.cuit }}</td>
-				<td>{{ p.nombre }}</td>
-				<td>{{ p.direccion }}</td>
-				<td>{{ p.telefono }}</td>
-				<td>{{ p.email }}</td>
+        <tbody class="table-group-divider">
+            {% for p in proveedores %}
+            <tr>
+                <td>{{ p.cuit }}</td>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.direccion }}</td>
+                <td>{{ p.telefono }}</td>
+                <td>{{ p.email }}</td>
 
-				<td>
-					<div class="d-flex justify-content-end align-items-end mb-3">
-			
-						<a class="btn btn-warning ms-1"  href="/Proveedor/{{p.cuit}}/edit/">Modificar</a>
-						<a class="btn btn-danger ms-1" href="/emp/delete/{{a.id}}/">Borrar</a>
-					</div>
-				</td>
-			</tr>
-		</tbody>
+                <td>
+                    <div class="d-flex justify-content-end align-items-end mb-3">
+            
+                        <a class="Modificar"  href="/Proveedor/{{p.cuit}}/edit/">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+</svg>
+                        Modificar</a>
+                        <a class="borrar" href="/Proveedor/{{p.cuit}}/delete/">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m3 3 1.664 1.664M21 21l-1.5-1.5m-5.485-1.242L12 17.25 4.5 21V8.742m.164-4.078a2.15 2.15 0 0 1 1.743-1.342 48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185V19.5M4.664 4.664 19.5 19.5" />
+</svg>
+ Borrar</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
         {% endfor %}
     </table>
 
@@ -77,4 +97,8 @@
 </div>
 
 {% endblock  %}
+</body>
+
+</html>
+
 

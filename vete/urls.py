@@ -1,9 +1,16 @@
 from django.urls import path
+from django.contrib.auth.views import LoginView
+from .forms import LoginForm
 from . import views
 
 urlpatterns = [
     path('', views.index_public, name='Inicio'),
     path('index-admin/', views.index_private, name='cosas'),
+
+    path('login/', LoginView.as_view(
+        template_name='registration/login.html',
+        authentication_form=LoginForm
+    ), name='login'),
 
     path('Empleado/Lista/' ,views.EmpViews.as_view(), name="empleados lista" ),
     path('Empleado/create/', views.empleado_create, name="empleado_create"),

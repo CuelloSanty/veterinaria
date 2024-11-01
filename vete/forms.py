@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import modelformset_factory, inlineformset_factory
 from .models import Empleado, Adelanto, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta
-
+from django.contrib.auth.forms import AuthenticationForm
 # Empleado Form
 class EmpleadoForm(forms.ModelForm):
     class Meta:
@@ -18,7 +18,21 @@ class AdelantoForm(forms.ModelForm):
         }
 AdelantoFormSet = inlineformset_factory(Empleado,Adelanto, form=AdelantoForm, extra=2, can_delete=True)
 
-
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label='Usuario',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Nombre de usuario'
+        })
+    )
+    password = forms.CharField(
+        label='Contraseña',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Contraseña'
+        })
+    )
 # Atencion Form
 class AtencionForm(forms.ModelForm):
     class Meta:
