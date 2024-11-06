@@ -1,3 +1,5 @@
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +9,7 @@
     <!-- Enlace a Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Link hacia el archivo de estilos css -->
+
     {% comment %} <link rel="stylesheet" href="styles.css"> {% endcomment %}
     <!-- Fuente de Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
@@ -21,7 +24,8 @@
             min-height: 30vh;
             margin: 0;
             font-size: 100%;
-            background: url("fondo azul con mascotas pequeñas animadas en color blanco.jpg") no-repeat center center fixed;
+            
+            background-image: url("{% static 'images/fondologin.jpg' %}");
         }
 
         /* Contenedor principal */
@@ -147,11 +151,10 @@
                 <div class="pie-form text-center mt-3">
                     <a href="#">¿Perdiste tu contraseña?</a> | 
                     <a href="#">¿No tienes cuenta? Regístrate</a>
+                    <br>
+                    <a href="#" class="inferior">Volver</a>
                 </div>
             </div>
-        </div>
-        <div class="text-center mt-3">
-            <a href="#" class="inferior">Volver</a>
         </div>
     </div>
 
@@ -161,3 +164,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+{% endblock %}
