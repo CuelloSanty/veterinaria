@@ -4,14 +4,15 @@ from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.urls import reverse_lazy
-
+from datetime import datetime
 
 # ----------------------------- Index -----------------------------------
 def index_public(request):
     return render(request,"index.html")
 
-def index_private(request): 
-    return render(request, 'Admin/index_admin.html')
+def LogOut(request):
+    return render(request, 'registration/close-session.html') 
+
 # ----------------------------------------------------------------------[End]
 
 # --------------------> Articulos
@@ -304,6 +305,17 @@ def Atencion_Delete(request, pk):
         except:
             print("Ta mal wacho")
     return render(request, 'Admin/Atencion/delete.html')
+
+class Atencion_Calendar(ListView):
+    extra_context = {"filter_data":Atencione.objects.filter(dia=(datetime.now().date()))}
+    model = Atencione
+    template_name = "Admin\Atencion\calendar.html"
+    context_object_name = "obj"
+
+def Atencion_detalle(request, pk):
+    get_atention = Atencione.objects.get(id=pk)
+    context = {'atencion': get_atention}
+    return render(request, 'Admin\Atencion\detalle.html',context)
 # ---------------------------- Atencion ----------------------------------------[End]
 
 # ---------------------------- Pedidos -------------------------------------------
@@ -399,3 +411,23 @@ def ventas_Delete(request, pk):
             print("Ta mal wacho")
     return render(request, 'Admin/Ventas/delete.html')
 # ---------------------------- Ventas --------------------------------------------[End]
+
+
+# --------------------------- Clientes Vistas ------------------------------------
+def contact(request):
+    return render(request, 'Clientes/contact.html')
+
+def service(request):
+    return render(request, 'Clientes/service.html')
+
+def articulos(request):
+    art = Articulo.objects.all()
+    context = {'obj': art}
+    return render(request, 'Clientes/articulos.html',context)
+
+def articulos_detalle(request,pk):
+    art_selected = Articulo.objects.get(pk=pk)
+    context = {"obj": art_selected}
+    print(art_selected.codigo)
+    return render(request, 'Clientes/aticulodetalle.html', context)
+# W

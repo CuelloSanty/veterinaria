@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Atenciones</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Detalle de Atencion</h1>
+        <a href="javascript:history.back()" class="btn btn-secondary mb-3">Volver</a>
+        <a href="/Atencion/edit/{{atencion.id}}" class="btn btn-warning mb-3">Editar</a>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio Atención</th>
+                    <th scope="col">Precio Final</th>
+                    <th scope="col">Mascota</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr>
+                    <td>{{ atencion.dia }}</td>
+                    <td>{{ atencion.hora }}</td>
+                    <td>{{ atencion.get_tipo_display }}</td>
+                    <td>{{ atencion.descripcion }}</td>
+                    <td>{{ atencion.Precio_Atencion }}</td>
+                    <td>{{ atencion.precio_final }}</td>
+                    <td>{{ atencion.mascota }}</td>
+                </tr>
+             
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+{% endblock %}

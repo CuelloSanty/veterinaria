@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'style\logout.css' %}">
+  {% endblock css %}
+  <title>LogOut</title>
+</head>
+<body>
+  <!-- <br>
+  <br> -->
+  <div class="conteiner">
+    <h3>¿Deseas cerrar session?</h6>
+    <form action="{% url 'logout' %}" method="post" style="width: 100%;"> {% csrf_token %}<button class="log" type="submit">Cerrar Session</button></form>
+    <a class="logout" onclick="history.back()">Cancelar</a>
+  </div>
+</body>
+</html>

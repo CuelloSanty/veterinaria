@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aticulo Detalle</title>
+</head>
+<body>
+    <br>
+    <br>
+
+    <main>
+    <div class="cont">
+        <img src="{{ obj.img }}" alt="">
+    </div>
+    <div class="preview">
+            <p>Codigo: {{ obj.codigo }}</p>
+            <h2>Nombre: {{  obj.nombre }}</h2>
+            <p>Descripcion: {{  obj.descripcion }}</p>
+            <p>Cantidad:<span>{{  obj.cantidad }}</span></p>
+            <hr>
+            <p>Marca: {{  obj.marca }}</p>
+            <p>Peso: {{  obj.peso }}</p>
+            <p>Talle: {{  obj.talle }}</p>
+            <p>Vencimiento: {{  obj.vencimiento }}</p>
+            <hr>
+            <p>Unidad: {{  obj.unidad }}</p>
+            <p>Proveedor: {{  obj.proveedor }}</p>
+            <p>Stock Minimo: {{  obj.stock_minimo }}</p>
+            <hr>
+            <p>Tipo Mascota: {{  obj.tipo_mascota }}</p>
+            <p>Tipo: {{  obj.tipo }}</p>
+        </div>
+        </main>
+</body>
+</html>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+*{
+   
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+main{
+   
+    font-family: "Roboto Mono", monospace;
+      font-optical-sizing: auto;
+      font-weight: 400;
+  
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
+
+.cont{
+    background-color: #282833;
+    padding-top: 10px;
+   width: auto;
+   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5UIW3R-yofiEcKXVEeWM2d5N3d9LO-khCag&s");
+   background-repeat: no-repeat;
+   background-size: cover;
+ 
+
+}
+.cont img{
+    height: 24rem;
+    width: 24rem;    
+    border-radius: 18rem;
+}
+.preview{
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: #F0F2F7;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+@media screen and (max-width: 690px){
+    main{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .cont img{
+        width: 100%;
+        border-radius: 10px;
+        
+        
+    }
+
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios</title>
+    {% block css%}
+    <link rel="stylesheet" href="{% static '' %}">
+    {% endblock css %}
+</head>
+<body>
+    <br><br>
+   <h1 class="text-center fw-light">Nuetros Servicios</h1>
+
+    <div class="container mt-5">
+        <div id="vacunacion" class="service-section">
+            <span class="d-flex flex-row"><img src="{% static '\assets\vac.svg' %}" style="width: 2rem;"><h2>Vacunación</h2></span>
+            <p>Realizamos vacunacion que prevencion completa, abarcamos desde perros hasta gatos, sin rango etario.</p>
+        </div>
+        <div id="peluqueria" class="service-section">
+            <span class="d-flex flex-row"><img src="{% static '\assets\pelo.svg' %}" alt="" style="width: 2rem;"><h2>Peluquería</h2></span>
+            <p>servicios de corte, baño son los que realizamos, cabe aclarar que si <br> la mascota no se muestra docil debera ser anestesiado.</p>
+        </div>
+        <div id="operaciones" class="service-section">
+            <span class="d-flex flex-row"><img src="{% static '\assets\doc.svg' %}"style="width: 2rem;"><h2>Operaciones</h2></span>
+            <p>Realizamos operaciones, como castraciones, amputaciones, eutanasia,<br>vaciamientos etc. Se le informara si la operaciones es de alta peligrosidad o complejidad</p>
+        </div>
+        <div id="ventas" class="service-section">
+            <span class="d-flex flex-row"><img src="{% static '\assets\store.svg' %}"style="width: 2rem;"><h2>Ventas</h2></span>
+            <div>
+                <h3>Medicamentos</h3>
+                <p>Vendemos desde pipetas, y algunos farmacos como la doxisilina etc. <br> hasta insumos para las hormigas</p>
+            </div>
+            <div>
+                <h3>Alimento Balanceado</h3>
+                <p>Vendemos unicamente alimento para perro y gato, puedes ver nuestros <a href="/Articulos/">articulos</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+{% endblock %}
+
+{% block footer %}
+{% include 'footer.html'%}
+{% endblock %}
+

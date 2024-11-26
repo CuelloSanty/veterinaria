@@ -8,10 +8,13 @@
 {% endblock css %}
 </head>
 <body>
-<h2>{% if view.action == 'add' %}Crear{% else %}Actualizar{% endif %} Item</h2>
-<a href="/Mascota/Lista">Ia Clientes...</a>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+    <br>
+    <br>
+    <br>
+    <h2>{% if view.action == 'add' %}Crear{% else %}Actualizar{% endif %} Item</h2>
+    <a href="/Mascota/Lista">Ia Clientes...</a>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>

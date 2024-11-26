@@ -126,5 +126,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configuraciones Login
 
 LOGIN_URL = '/login/'  # URL de la página de login si se intenta acceder a una vista protegida
+# LOGOUT_URL = '/logout/'
 LOGIN_REDIRECT_URL = '/'  # Redirección después de un login exitoso
 LOGOUT_REDIRECT_URL = '/' # Redirección después de cerrar sesión
