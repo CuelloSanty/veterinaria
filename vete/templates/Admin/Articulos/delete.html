@@ -1,8 +1,25 @@
-<br>
-<br>
-<br>
-<h2>¿Estás seguro de que deseas eliminar este item?</h2>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Eliminar</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar ítem</title>
+</head>
+<body>
+    <br><br><br><br>
+    <div class="container text-center">
+        <h2>Eliminar ítem</h2>
+        <form method="POST" style="">
+            {% csrf_token %}
+            <div class="form-check">
+                {{ form.confirm }}
+                <label class="form-check-label" for="confirm">{{ form.confirm.label }}</label>
+            </div>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a onclick="history.back()" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

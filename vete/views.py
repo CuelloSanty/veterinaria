@@ -60,7 +60,7 @@ class EmpViews(ListView):
     model = Empleado
     template_name = "admin/Empleados/empleado.html"
     context_object_name = "emp"
-    paginate_by = 3
+    paginate_by = 1
 
     def get_queryset(self):
         queryset = super().get_queryset()

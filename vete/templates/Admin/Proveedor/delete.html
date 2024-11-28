@@ -1,8 +1,25 @@
-<br>
-<br>
-<br>
-<a href="/Proveedor/Lista">Ir a empleado list</a>
-<form method="POST">
-      {% csrf_token %}
-      <button type="submit" class="del">Borrar</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar ítem</title>
+</head>
+<body>
+    <br><br><br><br>
+    <div class="container text-center">
+        <h2>Eliminar ítem</h2>
+        <form method="POST" style="">
+            {% csrf_token %}
+            <div class="form-check">
+                {{ form.confirm }}
+                <label class="form-check-label" for="confirm">{{ form.confirm.label }}</label>
+            </div>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a onclick="history.back()" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}
