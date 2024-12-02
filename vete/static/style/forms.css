@@ -1,44 +1,4 @@
-* {
-    font-family: "Open Sans", sans-serif;
-    box-sizing: border-box; /* Para que el padding no afecte el ancho total */
-}
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
 
-body {
-    background-color:white; /* Color de fondo más claro */
-    margin: 20px;
-    padding: 20px;
-}
-
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin: 20px; /* Centrar el formulario en la página */
-    max-width: 500px; /* Ancho máximo del formulario */
-    background-color: #343a40; /* Fondo blanco para el formulario */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
-
-input, select, button, label {
-    margin: 10px 0; /* Espaciado vertical */
-    width: 100%;
-    max-width: 100%; /* Asegurar que los elementos no se excedan del ancho */
-}
-
-input, select {
-    padding: 10px; /* Mayor espaciado interno */
-    border: 1px solid #757EB5; /* Borde más visible */
-    border-radius: 4px;
-    transition: border-color 0.3s; /* Transición suave para cambios de borde */
-}
-
-input:focus, select:focus {
-    border-color: #5a639c; /* Cambio de color de borde al enfocar */
-    outline: none; /* Sin contorno al enfocar */
-}
 
 button {
     padding: 10px;
@@ -57,3 +17,141 @@ button:hover {
 label {
     font-weight: bold; /* Negrita para las etiquetas */
 }
+
+:root {
+    --color-50: #f0f6fe;
+    --color-100: #ddeafc;
+    --color-200: #c3dbfa;
+    --color-300: #9bc5f5;
+    --color-400: #6ba6ef;
+    --color-500: #538cea;
+    --color-600: #3368dd;
+    --color-700: #2a54cb;
+    --color-800: #2845a5;
+    --color-900: #263e82;
+    --color-950: #1b2750;
+  
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+  
+  
+  
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+  }
+  body{
+    background-color: var(--color-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+  
+  form{
+    width: 90%;
+  }
+  a{
+    text-decoration: none;
+    color: rgb(15, 29, 146);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  a svg{
+    width: 20px;
+  }
+  input{
+    padding: 10px;
+    width: 100%;
+    background-color: var(--color-200);
+    color: var(--color-900);
+    outline: none;
+    border: none;
+    font-size: medium;
+    border-radius: 7px;
+  
+  
+  }
+  
+  select{
+    padding: 10px;
+    width: 100%;
+    background-color: var(--color-200);
+    color: var(--color-800);
+    outline: none;
+    border: none;
+    font-size: medium;
+    border-radius: 7px;
+  }
+  
+  label{
+    font-size: small;
+  }
+  .main-conteiner{
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .form{
+    padding: 10px;
+    width: 50%;
+  }
+  
+  .formset-conteiner{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  
+  }
+  .add{
+    margin-bottom: 10px;
+    color: var(--color-950);
+    background-color: var(--color-100);
+    box-shadow: 5px 5px var(--color-200);
+    border-radius: 10px;
+    border: none;
+    padding: 6px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    transition: all .2s;
+  }
+  .add svg{
+    width: 30px;
+   
+  }
+  
+  .add:active{
+    transform: scale(0.999);
+    box-shadow: 0 0 0 0;
+  
+  
+  }
+  .formset{
+    width: 100%;
+    overflow: scroll;
+    height: 20rem;
+  }
+  .submit{
+    background-color: var(--color-200);
+    color: var(--color-700);
+    border: none;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    transition: all .5s;
+  }
+  .submit:active{
+    transform: scale(0.96);
+  }

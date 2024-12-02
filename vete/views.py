@@ -380,7 +380,7 @@ def Ventas_Create(request):
             form = form.save()
             formset.instance = form
             formset.save()
-        return redirect('/Ventas/Lista/')
+            return redirect('/Ventas/Lista/')
     else:
         form = VentaForm()
         formset = VentaFormSet()
