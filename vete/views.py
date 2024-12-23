@@ -1,10 +1,58 @@
 from django.shortcuts import render, redirect
 from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet, PedidoForm, DetallePedidoFormSet, VentaForm, VentaFormSet
-from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta
+from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
+from django.forms.models import model_to_dict
 from django.urls import reverse_lazy
 from datetime import datetime
+
+def function(db_formset_after, db_formset_before,DbToChanged):
+    
+    def GetData(cleaned_form):
+        return {"id":cleaned_form.get('id'),"cantidad": cleaned_form.get('cantidad'),"art":cleaned_form.get('articulo')}
+    def PushToDb(id, cantidad, operation, db_to_change):
+        db = db_to_change.objects.get(pk=id)
+        if operation == 1:
+            db.cantidad += cantidad
+            db.save()
+
+        if operation == 2:
+            if not cantidad > db.cantidad:
+                db.cantidad -= cantidad
+                db.save()
+            else: return None
+        else: pass
+    def GetPreviousToCompare(db,key_prev, db_formset_after, param=None):
+        op = None
+        db_prev = db.get(id=key_prev)
+        after = {"id":db_prev.id,"cantidad":db_prev.cantidad,"art":db_prev.articulo}
+        
+        # Operations
+        if after["cantidad"] < param["cantidad"]:op = 2
+        if after["cantidad"] > param["cantidad"]:op = 1
+        if after["cantidad"] == param["cantidad"]:op = 0
+        if after["art"] != param["art"]: PushToDb(after['art'].codigo, after['cantidad'], 1, DbToChanged)
+
+        PushToDb(param["art"].codigo, param["cantidad"],op,DbToChanged)
+
+    deleted_forms = db_formset_before.deleted_forms
+    if deleted_forms:
+        for form in deleted_forms:
+            cleaned_form = form.cleaned_data
+            data = GetData(cleaned_form)
+            PushToDb(data['art'].codigo, data["cantidad"], 1, DbToChanged)
+    if db_formset_before:
+        for form in db_formset_before:
+            if form.has_changed(): 
+                cleaned_form = form.cleaned_data
+                data = GetData(cleaned_form)
+                if not form in db_formset_after: PushToDb(data['art'].codigo, data["cantidad"],1, DbToChanged)
+                if not data["id"] == None: GetPreviousToCompare(db_formset_after,int(str(data["id"])),db_formset_after,data)
+
+
+
+
 
 # ----------------------------- Index -----------------------------------
 def index_public(request):
@@ -24,7 +72,7 @@ class Articulos_vista:
 class Art_list(Articulos_vista, ListView):
     template_name = 'admin/Articulos/Lista.html'
     context_object_name = "Art"
-    paginate_by = 1
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -177,7 +225,7 @@ class Client_List(cliente_mainclass, ListView):
     context_object_name = "Cliente"
     
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = Cliente.objects.all().order_by('id')
         query = self.request.GET.get('q')
         if query:
             queryset = queryset.filter(Q(nombre__icontains=query) | Q(telefono__icontains=query))
@@ -219,7 +267,7 @@ class Masc_List(mascota_mainclass, ListView):
     paginate_by = 7
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = Mascota.objects.all().order_by('id')
         query = self.request.GET.get('q')
         if query:
             queryset = queryset.filter(Q(nombre__icontains=query) | Q(raza__icontains=query))
@@ -253,9 +301,15 @@ class Atencion_List(ListView):
     template_name = "Admin/Atencion/lista.html"
     paginate_by = 1
     context_object_name = "Atencion"
+    # def get_queryset(self): 
+        # Ordena el queryset por el campo 'id' 
+        # return Atencione.objects.all().order_by('id')
+
+
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = Atencione.objects.all().order_by('id')
+
         query = self.request.GET.get('q')
         if query:
             queryset = queryset.filter(Q(nombre__icontains=query) | Q(raza__icontains=query))
@@ -289,6 +343,7 @@ def Atencion_Update(request, pk):
         formset = ArtAtencionFormSet(request.POST, instance=ins)
         if form.is_valid() and formset.is_valid():
             form = form.save()
+
             formset.instance = form
             formset.save()
             return redirect('/Atencion/Lista/')
@@ -324,6 +379,11 @@ class Pedidos_List(ListView):
     template_name = "Admin/Pedidos/lista.html"
     paginate_by = 3
     context_object_name = "Pedidos"
+
+    def get_queryset(self): 
+        # Ordena el queryset por el campo 'id' 
+        return Venta.objects.all().order_by('id')
+
 
 def Pedidos_Create(request):
     if request.method == "POST":
@@ -372,6 +432,10 @@ class Ventas_List(ListView):
     paginate_by = 3
     context_object_name = "Ventas"
 
+    def get_queryset(self): 
+        # Ordena el queryset por el campo 'id' 
+        return Venta.objects.all().order_by('id')
+
 def Ventas_Create(request):
     if request.method == "POST":
         form = VentaForm(request.POST)
@@ -386,12 +450,20 @@ def Ventas_Create(request):
         formset = VentaFormSet()
         return render(request, 'Admin/Ventas/form.html',{"form":form, "formset":formset})
 
+
+
 def Ventas_Update(request, pk):
     ins = Venta.objects.get(pk=pk)
+    ins_formset = DetalleVenta.objects.filter(venta=ins.id)
+   
+
     if request.method == "POST":
         form = VentaForm(request.POST, instance=ins)
         formset = VentaFormSet(request.POST, instance=ins)
+        
         if form.is_valid() and formset.is_valid():
+    
+            function(ins_formset,formset,Articulo)
             form = form.save()
             formset.instance = form
             formset.save()
@@ -430,4 +502,5 @@ def articulos_detalle(request,pk):
     context = {"obj": art_selected}
     print(art_selected.codigo)
     return render(request, 'Clientes/aticulodetalle.html', context)
+
 # W

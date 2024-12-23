@@ -10,9 +10,6 @@ class Proveedore(models.Model):
     def __str__(self):
         return self.nombre
 
-    def get_absolut_url(self):
-        return reverse('proveedor', kwargs={'pk': self.pk})
-
 class Articulo(models.Model):
 
     MEDICAMENTO = 'Med'
@@ -73,9 +70,6 @@ class Articulo(models.Model):
     tipo_mascota = models.CharField(max_length=5, choices=[('perro',"Perro"), ('gato','Gato')])
     # campo [end]
 
-    def get_absolut_url(self):
-        return reverse('art_detail', kwargs={'pk': self.pk})
-
     def __str__(self):
         return self.nombre
 
@@ -120,9 +114,6 @@ class Mascota(models.Model):
     
     def __str__(self):
         return self.nombre
-
-
-
 
 # -----------------------------  Atencion --------------------------------------
 class Atencione(models.Model):
@@ -198,7 +189,11 @@ class DetalleVenta(models.Model):
     id = models.AutoField(primary_key=True)
     venta = models.ForeignKey(Venta,related_name='VEntas', on_delete=models.CASCADE)
     articulo = models.ForeignKey(Articulo,related_name='ARticulos', on_delete=models.CASCADE)
-    cantidad = models.DecimalField(max_digits=4,decimal_places=3)
+    cantidad = models.DecimalField(max_digits=14,decimal_places=3)
 
     def __str__(self):
         return str(self.id)
+
+# Subs 
+class Subscription(models.Model):
+    Gmail = models.CharField(max_length=125)
