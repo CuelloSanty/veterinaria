@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet, PedidoForm, DetallePedidoFormSet, VentaForm, VentaFormSet
+from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet, PedidoForm, DetallePedidoFormSet, VentaForm, VentaFormSet, FormSubscription
 from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
@@ -8,7 +8,6 @@ from django.urls import reverse_lazy
 from datetime import datetime
 
 def function(db_formset_after, db_formset_before,DbToChanged):
-    
     def GetData(cleaned_form):
         return {"id":cleaned_form.get('id'),"cantidad": cleaned_form.get('cantidad'),"art":cleaned_form.get('articulo')}
     def PushToDb(id, cantidad, operation, db_to_change):
@@ -47,7 +46,7 @@ def function(db_formset_after, db_formset_before,DbToChanged):
             if form.has_changed(): 
                 cleaned_form = form.cleaned_data
                 data = GetData(cleaned_form)
-                if not form in db_formset_after: PushToDb(data['art'].codigo, data["cantidad"],1, DbToChanged)
+                if not form in db_formset_after: PushToDb(data['art'].codigo, data["cantidad"],2, DbToChanged)
                 if not data["id"] == None: GetPreviousToCompare(db_formset_after,int(str(data["id"])),db_formset_after,data)
 
 
@@ -56,7 +55,15 @@ def function(db_formset_after, db_formset_before,DbToChanged):
 
 # ----------------------------- Index -----------------------------------
 def index_public(request):
-    return render(request,"index.html")
+    if request.method == 'POST':
+        form = FormSubscription(request.POST)
+        if form.is_valid():
+            form = form.save()
+            print(form)
+            return redirect("/")
+    else:
+        form = FormSubscription()
+        return render(request,"index.html", {"form":form})
 
 def LogOut(request):
     return render(request, 'registration/close-session.html') 
@@ -304,9 +311,6 @@ class Atencion_List(ListView):
     # def get_queryset(self): 
         # Ordena el queryset por el campo 'id' 
         # return Atencione.objects.all().order_by('id')
-
-
-
     def get_queryset(self):
         queryset = Atencione.objects.all().order_by('id')
 
@@ -327,6 +331,7 @@ def Atencion_Create(request):
         form = AtencionForm(request.POST)
         formset = ArtAtencionFormSet(request.POST)
         if form.is_valid() and formset.is_valid():
+            function([],formset, Articulo)
             form = form.save()
             formset.instance = form
             formset.save()
@@ -338,12 +343,14 @@ def Atencion_Create(request):
 
 def Atencion_Update(request, pk):
     ins = Atencione.objects.get(pk=pk)
+    ins_formset = ArtAtencionFormSet.objects.filter(venta=ins.id)
+
     if request.method == "POST":
         form = AtencionForm(request.POST, instance=ins)
         formset = ArtAtencionFormSet(request.POST, instance=ins)
         if form.is_valid() and formset.is_valid():
+            function(ins_formset, formset, Articulo)
             form = form.save()
-
             formset.instance = form
             formset.save()
             return redirect('/Atencion/Lista/')
@@ -390,6 +397,7 @@ def Pedidos_Create(request):
         form = PedidoForm(request.POST)
         formset = DetallePedidoFormSet(request.POST)
         if form.is_valid() and formset.is_valid():
+            function([],formset,Articulo)
             form = form.save()
             formset.instance = form
             formset.save()
@@ -401,10 +409,13 @@ def Pedidos_Create(request):
 
 def Pedidos_Update(request, pk):
     ins = Pedido.objects.get(pk=pk)
+    ins_formset = DetallePedidoFormSet.objects.filter(venta=ins.id)
+
     if request.method == "POST":
         form = PedidoForm(request.POST, instance=ins)
         formset = DetallePedidoFormSet(request.POST, instance=ins)
         if form.is_valid() and formset.is_valid():
+            function(ins_formset,formset, Articulo)
             form = form.save()
             formset.instance = form
             formset.save()
@@ -441,6 +452,7 @@ def Ventas_Create(request):
         form = VentaForm(request.POST)
         formset = VentaFormSet(request.POST)
         if form.is_valid() and formset.is_valid():
+            function([],formset,Articulo)
             form = form.save()
             formset.instance = form
             formset.save()
@@ -462,7 +474,6 @@ def Ventas_Update(request, pk):
         formset = VentaFormSet(request.POST, instance=ins)
         
         if form.is_valid() and formset.is_valid():
-    
             function(ins_formset,formset,Articulo)
             form = form.save()
             formset.instance = form
@@ -502,5 +513,3 @@ def articulos_detalle(request,pk):
     context = {"obj": art_selected}
     print(art_selected.codigo)
     return render(request, 'Clientes/aticulodetalle.html', context)
-
-# W

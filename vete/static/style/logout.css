@@ -1,76 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-*{
-  transition: all .5s;
-  font-family: "Host Grotesk", sans-serif;
-  font-optical-sizing: auto;
-}
-
 body{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: rgb(26, 26, 26);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 
-
-  background-image: url("https://images.unsplash.com/photo-1501820488136-72669149e0d4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
-  background-repeat: no-repeat  ;
-
 }
 
-.conteiner{
-  padding: 10px;
+form{
+  color: rgb(255, 255, 255);
+  height: fit-content;
+
+  padding: 20px;
+  padding-top: 2.7rem;
+  padding-bottom: 3rem;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.441);
-  backdrop-filter: blur(1rem);
- 
-  width: 70%;
-  height: 70%;
+  background-color: rgb(50, 51, 51);
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px 10px rgb(22, 22, 22);
+  transition: all .6s ease-in-out;
 }
-
-h3{
-  color: rgb(250, 250, 250);
+form:hover{
+  transform: scale(1.03);
 }
-
-.log, .logout{
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 100%;
-  cursor: pointer;
-  font-size: 1rem;
+.circle{
   display: flex;
+  align-items: center;
+  width: 80px;
+  height: 60px;
+
+}
+
+.circle img{
+  width: 100%;
+  border-radius: 13rem;
+
+}
+.cerrar{
+  cursor: pointer;
+  font-size: 19px;
+  padding: 10px;
   align-items: center;
   justify-content: center;
+  width: 100%;
+
+  background-color: rgb(42, 153, 233);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 7px;
+  transition: all .5s ease-in-out;
+  margin-bottom: 10px;
 }
-.log{
-  border: 2px solid rgba(220, 220, 220, 0);
-  border-radius: .2rem;
-  color: rgb(255, 9, 21);
-  background-color: rgba(255, 0, 0, 0);
-  margin: 10px;
+.cancel{
+  cursor:pointer;
+  padding: 10px;
+  font-size: 19px;
+  text-align: center;
+  width: 91.9%;
+
+  background-color: rgb(82, 92, 115);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 7px;
+  transition: all .5s ease-in-out;
+  margin-bottom: 10px;
 
 }
 
-.logout{
-  border: 2px solid rgba(220, 220, 220, 0);
-  border-radius: .2rem;
-  color: rgb(9, 124, 255);
-  background-color: rgba(255, 0, 0, 0);
-  margin: 10px;
+.cancel:hover{
+  color: rgb(131, 199, 248);
+  background-color: rgb(51, 58, 73);
+
+}
+.cancel:active{
+  transform: scale(0.97);
+}
+.cerrar:hover{
+  color: rgb(13, 45, 68);
+  background-color: rgb(70, 190, 234);
+}
+.cerrar:active{
+  transform: scale(0.97);
 }
 
-.log:hover{
-  color: rgb(255, 134, 140);
-  border: 1px solid rgb(255, 9, 21);
+.info {
+  margin: 0 auto;
+  color: rgb(255, 255, 255);
+  width: 100%;
+  font-size: 17px;
+  font-weight: 100;
 }
-.logout:hover{
-  color: rgb(171, 209, 253);
-  border: 1px solid rgb(9, 124, 255);
-
-
+.help a{
+  color: rgb(61, 152, 255);
+  font-size: 14px;
+  font-weight: 100;
+  text-decoration: none;
 }

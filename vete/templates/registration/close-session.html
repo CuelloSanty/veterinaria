@@ -10,12 +10,25 @@
   <title>LogOut</title>
 </head>
 <body>
-  <!-- <br>
-  <br> -->
-  <div class="conteiner">
-    <h3>¿Deseas cerrar session?</h6>
-    <form action="{% url 'logout' %}" method="post" style="width: 100%;"> {% csrf_token %}<button class="log" type="submit">Cerrar Session</button></form>
-    <a class="logout" onclick="history.back()">Cancelar</a>
+ <form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <div class="circle">
+    <img src="{% static '.\images\Admin.png' %}" alt="">
   </div>
+  <h3 style="font-weight:100; font-size:large;">¿Ustedes desea cerrar session?</h3>
+    <span class="info">
+    </p>Si uested cierra session, No podra acceder <br> a todas las funciones de administrador</p>
+    </span>
+  <button class="cerrar" type="submit">
+
+    Cerar session
+  </button>
+  <a class="cancel" onclick="history.back()">Cancelar</a>
+  <br>
+  <div class="help">
+    <a href="#">¿tienes cuenta?</a>
+    <a href="#">¿Tienes dudas?</a>
+  </div>
+</form>
 </body>
 </html>

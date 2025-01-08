@@ -6,12 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-
   <title>Inicio | Clinica Veterinaria</title>
-
-  <!-- <link rel="stylesheet" href="{% static  'style/index.css' %}"> -->
-  <!-- <a href="mailto:miemail@gmail.com" style="padding: 10px 20px; background-color: #e74c3c; color: white; text-decoration: none; border-radius: 5px;">¡Contáctanos!</a> -->
   <meta name="theme-color" content="#09f">
   <meta name="description" content="Veterinaria La Cucha acompañado de todo el cuidado y cariño">
 
@@ -20,7 +15,20 @@
 
 <body>
 <main>
-  <div style="width: 100%; background-color: rgb(255, 255, 255);
+  <br><br><br><br>
+  <section class="py-5" style="width: 80%; margin: 0 auto; ">
+<div class="container">
+  
+  <span style="display: flex;align-items: center;"><h1 style="color: rgb(42, 153, 233);" class=" p-1">Veterinaria La Cucha</h1> 
+    <img src="{% static './images/huellas.png' %}" style="width: 4rem;"></span>
+  <p class="lead">Hola somo la Veterinaria La Chucha, Esta es nuestra web, Nuestra mision es cuidar de tus mascotas. Clínica de pequeños y grandes animales.</p>
+    <p class="lead">Diagnóstico de gestación temprana - Servicio de ecografía móvil - Traumatología - Cirugía - Análisis de laboratorio - Internación - Peluquería Canina -
+    Alimento balanceado - Artículos varios.
+    Contamos con Veterinarios con experiencia, como <a href="https://www.instagram.com/gpnzalol/">Gonzalo larghi</a> y ademas <a href="https://www.instagram.com/attilifede/">Federico Atili</a>
+  </p>
+</div>
+</section>
+  <div style=" background-color: rgb(255, 255, 255);
   " >
   <div id="carouselExampleCaptions" class="carousel slide carusel" style="margin: 0 auto;">
     <div class="carousel-indicators">
@@ -62,17 +70,7 @@
   </div>
 </div>
 <!-- Page Content -->
-<section class="py-5">
-<div class="container">
-  
-  <h1 class="fw-light p-1">Veterinaria La Cucha</h1>
-  <p class="lead">Hola somo la Veterinaria La Chucha, Esta es nuestra web, Nuestra mision es cuidar de tus mascotas. Clínica de pequeños y grandes animales.</p>
-    <p class="lead">Diagnóstico de gestación temprana - Servicio de ecografía móvil - Traumatología - Cirugía - Análisis de laboratorio - Internación - Peluquería Canina -
-    Alimento balanceado - Artículos varios.
-    Contamos con Veterinarios con experiencia, como <a href="https://www.instagram.com/gpnzalol/">Gonzalo larghi</a> y ademas <a href="https://www.instagram.com/attilifede/">Federico Atili</a>
-  </p>
-</div>
-</section>
+
 </main>
 
 
@@ -88,8 +86,10 @@
   .carusel {
     width: 100%;
   }
-  .carousel-item{
-    height: 26rem;
+  .carousel-item {
+    width: 120%;
+    height: 20rem;
+    background-size: cover;
   }
 }
 @media screen and (min-width: 650px) {

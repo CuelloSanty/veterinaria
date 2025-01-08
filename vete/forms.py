@@ -1,13 +1,22 @@
 from django import forms
 from django.forms import modelformset_factory, inlineformset_factory
-from .models import Empleado, Adelanto, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta
+from .models import Empleado, Adelanto, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta, Subscription
 from django.contrib.auth.forms import AuthenticationForm
 # Empleado Form
 class EmpleadoForm(forms.ModelForm):
     class Meta:
         model = Empleado
         fields = ['nombre', 'FechaContratacion', 'TurnoChoice', 'sueldo']
+class FormSubscription(forms.ModelForm):
+    class Meta:
+        model = Subscription
+        fields = ["Gmail","asunto"]
+        widgets = {
+        "Gmail":forms.TextInput(attrs={"type":"email", "placeholder":"Example@Gmail.com"}),
+        "asunto":forms.TextInput(attrs={"type":"text", "placeholder":"Boletin de productos"})
+        }
 
+        
 class AdelantoForm(forms.ModelForm):
     class Meta:
         model = Adelanto

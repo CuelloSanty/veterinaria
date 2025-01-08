@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Empleado, Adelanto, Proveedore, Articulo, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta
+from .models import Empleado, Adelanto, Proveedore, Articulo, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta, Subscription
 
 class AdelantoInline(admin.TabularInline):
     model = Adelanto
@@ -47,3 +47,5 @@ admin.site.register(Articulo)
 
 admin.site.register(Cliente)
 admin.site.register(Mascota)
+
+admin.site.register(Subscription)

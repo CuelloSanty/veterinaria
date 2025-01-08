@@ -9,9 +9,7 @@ class Proveedore(models.Model):
     
     def __str__(self):
         return self.nombre
-
 class Articulo(models.Model):
-
     MEDICAMENTO = 'Med'
     ALIMENTO = 'Alim'
     ACCESORIO = 'Acc'
@@ -197,3 +195,5 @@ class DetalleVenta(models.Model):
 # Subs 
 class Subscription(models.Model):
     Gmail = models.CharField(max_length=125)
+    asunto = models.CharField(max_length=200,default='')
+    Content = models.CharField(max_length=1000, default='', blank=True)

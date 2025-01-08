@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500&display=swap');
 
 :root {
-    --footer-background: white;
-    --text-color: #111420;
+    --footer-background: #2D2D33;
+    --text-color: #DAEEFE;
     --text-gray: #e1e1e1;
     --text-heading-gray: #b9b9b9;
 }
@@ -20,11 +20,17 @@ body {
     margin: 0; /* Elimina el margen predeterminado */
 }
 
+body>footer{
+    background-color: var(--footer-background);
+
+}
 /*? footer containers */
 
 footer {
+    background-color:var(--footer-background);
+    color: var(--text-color);
     margin-top: auto;
-    background-color: var(--footer-background);
+
     min-width: 18rem;
     width: 100%;
     display: flex;
@@ -33,8 +39,10 @@ footer {
 }
 
 .footer-wrapper {
+    width: 100%;
+    color: var(--text-color);
+    background-color: var(--footer-background);
     display: flex;
-    background: var(--footer-background);
     flex-direction: column;
     max-width: 80rem;
     padding: 1rem;
@@ -54,7 +62,7 @@ footer {
 .footer-line {
     display: block;
     width: 100%;
-    height: 0.5rem;
+    height: 0.1rem;
     background: linear-gradient(
         90deg,#5d7bff,
         #5d90ff 50%,#ad63f6
@@ -68,29 +76,48 @@ footer {
     flex-wrap: wrap;
 }
 
-.footer-subscribe > input {
-    border: 1px solid var(--text-gray);
-    color: var(--text-color);
-    min-height: 2.25rem;
-    font-size: 1.2rem;
-    flex: 1 0 8rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.5rem;
+form p{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+form p label{
+  display: flex;
+  padding-right: 10px;
+}
+form p input{
+  width: 96%;
+  background-color: rgba(102, 51, 153, 0);
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    margin: 10px;
+    outline: none;
+    color: rgb(163, 164, 165);
 }
 
-.footer-subscribe > button {
-    cursor: pointer;
-    background: var(--text-color);
-    border-radius: 0.5rem;
-    color: white;
-    font-size: 1.25rem;
-    min-width: 8rem;
-    min-height: 2.25rem;
-    flex: 1 0 5rem;
-    white-space: nowrap;
-    padding: 0.5rem 0.75rem;
-    border: 0;
-    outline: none;
+form button, button{
+  transition: all .5s ease;
+     border-radius: 4rem;
+     background-color: #4c4c56;
+     color: #f0f8ff;
+     padding-inline: 20px;
+     border: none;
+
+
+}
+form button, button:active{
+  transform: scale(0.95);
+}
+form{
+    width: 30rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 /*? footer columns */
@@ -221,4 +248,10 @@ footer {
         justify-content: center;
         margin: 0 auto;
     }
+
+    form{
+        width: 18.5rem;
+    }
 }
+
+.modal-content { background-color: #343a406d; color: #ffffff; backdrop-filter: blur(1rem)} .modal-header, .modal-footer { border-color: #454d55; } .btn-close { filter: invert(1); } .form-control { background-color: #454d55; color: #ffffff; border: 1px solid #6c757d; }
