@@ -9,7 +9,7 @@
         <form method="GET" class="d-none d-md-table-cell col-md-4">
             <div class="input-group">
                 <input type="text" class="form-control" name="q" value="{{ query }}" \
-                    placeholder="Buscar en nombre o turno...">
+                    placeholder="Atencion">
                 <button class="btn btn-primary text-light" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -41,9 +41,11 @@
 
 				<td>
 					<div class="d-flex justify-content-end align-items-end mb-3">
-			
+                        {% if user.is_staff %}
 						<a class="btn btn-warning ms-1"  href="/Atencion/edit/{{a.id}}/">Modificar</a>
 						<a class="btn btn-danger ms-1" href="/Atencion/delete/{{a.id}}/">Borrar</a>
+                        {% endif %}
+
 					</div>
 				</td>
 			</tr>

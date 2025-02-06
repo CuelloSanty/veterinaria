@@ -20,7 +20,7 @@
             <form method="GET" class="d-none d-md-table-cell col-md-4">
                 <div class="input-group">
                     <input type="text" class="form-control" name="q" value="{{ query }}" \
-                        placeholder="Buscar en nombre o turno...">
+                        placeholder="Venta...">
                     <button class="btn btn-primary text-light" type="submit">
                         Buscar
                     </button>
@@ -43,6 +43,7 @@
             </thead>
     
             <tbody>
+                
                 {% for a in Ventas %}
                 <tr>
                     <td>{{ a.fecha }}</td>
@@ -51,9 +52,10 @@
     
                     <td>
                         <div class="d-flex justify-content-end align-items-end mb-3">
-                
+                        {% if user.is_staff %}
                             <a class="btn btn-warning ms-1"  href="/Ventas/edit/{{a.id}}">Modificar</a>
                             <a class="btn btn-danger ms-1" href="/Ventas/delete/{{a.id}}">Borrar</a>
+                        {% endif %} 
                         </div>
                     </td>
                 </tr>

@@ -12,7 +12,7 @@ def function(db_formset_after, db_formset_before,DbToChanged):
         return {"id":cleaned_form.get('id'),"cantidad": cleaned_form.get('cantidad'),"art":cleaned_form.get('articulo')}
     def PushToDb(id, cantidad, operation, db_to_change):
         db = db_to_change.objects.get(pk=id)
-        if operation == 1:
+        if operation == 1:  
             db.cantidad += cantidad
             db.save()
 
@@ -115,7 +115,7 @@ class EmpViews(ListView):
     model = Empleado
     template_name = "admin/Empleados/empleado.html"
     context_object_name = "emp"
-    paginate_by = 1
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -190,7 +190,7 @@ class proveedor_mainclass:
 class Prov_List(proveedor_mainclass, ListView):
     template_name = "Admin/Proveedor/lista.html"
     context_object_name = "proveedores"
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -223,16 +223,15 @@ class Prov_Delete(proveedor_mainclass, DeleteView):
 class cliente_mainclass:
     model = Cliente
     fields = ('__all__')
-    exclude = ('id',)
     success_url = reverse_lazy("/Cliente")
 
 class Client_List(cliente_mainclass, ListView):
     template_name = "Admin/Cliente/lista.html"
-    paginate_by = 1
+    paginate_by = 10
     context_object_name = "Cliente"
     
     def get_queryset(self):
-        queryset = Cliente.objects.all().order_by('id')
+        queryset = super().get_queryset()
         query = self.request.GET.get('q')
         if query:
             queryset = queryset.filter(Q(nombre__icontains=query) | Q(telefono__icontains=query))
@@ -253,7 +252,7 @@ class Client_Update(cliente_mainclass, UpdateView):
 
 
 class Client_Delete(cliente_mainclass, DeleteView):
-    template_name = "Admin/Cliente/lista.html"
+    template_name = "Admin/Cliente/delete.html"
     success_url = "/Cliente/Lista/"
 
 # -------------------------   Cliente   ------------------------------[End]
@@ -271,10 +270,10 @@ class mascota_mainclass:
 class Masc_List(mascota_mainclass, ListView):
     template_name = "Admin/Mascota/lista.html"
     context_object_name = "Mascota"
-    paginate_by = 7
+    paginate_by = 10
 
     def get_queryset(self):
-        queryset = Mascota.objects.all().order_by('id')
+        queryset = super().get_queryset()
         query = self.request.GET.get('q')
         if query:
             queryset = queryset.filter(Q(nombre__icontains=query) | Q(raza__icontains=query))
@@ -306,17 +305,15 @@ class Masc_Delete(mascota_mainclass, DeleteView):
 class Atencion_List(ListView):
     model = Atencione
     template_name = "Admin/Atencion/lista.html"
-    paginate_by = 1
+    paginate_by = 10
     context_object_name = "Atencion"
-    # def get_queryset(self): 
-        # Ordena el queryset por el campo 'id' 
-        # return Atencione.objects.all().order_by('id')
-    def get_queryset(self):
-        queryset = Atencione.objects.all().order_by('id')
+  
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
         query = self.request.GET.get('q')
         if query:
-            queryset = queryset.filter(Q(nombre__icontains=query) | Q(raza__icontains=query))
+            queryset = queryset.filter(Q(tipo__icontains=query) | Q(mascota__nombre__icontains=query))
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -343,7 +340,7 @@ def Atencion_Create(request):
 
 def Atencion_Update(request, pk):
     ins = Atencione.objects.get(pk=pk)
-    ins_formset = ArtAtencionFormSet.objects.filter(venta=ins.id)
+    ins_formset = ArticuloAtencion.objects.filter(pedido=ins.id)
 
     if request.method == "POST":
         form = AtencionForm(request.POST, instance=ins)
@@ -384,13 +381,20 @@ def Atencion_detalle(request, pk):
 class Pedidos_List(ListView):
     model = Pedido
     template_name = "Admin/Pedidos/lista.html"
-    paginate_by = 3
+    paginate_by = 10
     context_object_name = "Pedidos"
 
-    def get_queryset(self): 
-        # Ordena el queryset por el campo 'id' 
-        return Venta.objects.all().order_by('id')
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(Q(tipo__icontains=query) | Q(proveedor__nombre__icontains=query))
+        return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
 
 def Pedidos_Create(request):
     if request.method == "POST":
@@ -409,7 +413,7 @@ def Pedidos_Create(request):
 
 def Pedidos_Update(request, pk):
     ins = Pedido.objects.get(pk=pk)
-    ins_formset = DetallePedidoFormSet.objects.filter(venta=ins.id)
+    ins_formset = DetallePedido.objects.filter(pedido=ins.id)
 
     if request.method == "POST":
         form = PedidoForm(request.POST, instance=ins)
@@ -440,12 +444,23 @@ def Pedidos_Delete(request, pk):
 class Ventas_List(ListView):
     model = Venta
     template_name = "Admin/Ventas/lista.html"
-    paginate_by = 3
+    paginate_by = 10
     context_object_name = "Ventas"
 
-    def get_queryset(self): 
-        # Ordena el queryset por el campo 'id' 
-        return Venta.objects.all().order_by('id')
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(Q(cliente__nombre__icontains=query) | Q(empleado__nombre__icontains=query))
+            print([queryset])
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
+
+    
 
 def Ventas_Create(request):
     if request.method == "POST":
@@ -491,7 +506,7 @@ def ventas_Delete(request, pk):
             obj.delete()
             return redirect('/Ventas/Lista/')
         except:
-            print("Ta mal wacho")
+            return redirect('/')
     return render(request, 'Admin/Ventas/delete.html')
 # ---------------------------- Ventas --------------------------------------------[End]
 

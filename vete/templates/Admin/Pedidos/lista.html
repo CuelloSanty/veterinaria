@@ -21,7 +21,7 @@
             <form method="GET" class="d-none d-md-table-cell col-md-4">
                 <div class="input-group">
                     <input type="text" class="form-control" name="q" value="{{ query }}" \
-                        placeholder="Buscar en nombre o turno...">
+                        placeholder="Pedidos...">
                     <button class="btn btn-primary text-light" type="submit">
                         Buscar
                     </button>
@@ -52,9 +52,11 @@
     
                     <td>
                         <div class="d-flex justify-content-end align-items-end mb-3">
-                
+                        {% if user.is_staff %}
                             <a class="btn btn-warning ms-1"  href="/Pedidos/edit/{{p.id}}">Modificar</a>
                             <a class="btn btn-danger ms-1" href="/Pedidos/delete/{{p.id}}">Borrar</a>
+                        {% endif %}
+
                         </div>
                     </td>
                 </tr>
