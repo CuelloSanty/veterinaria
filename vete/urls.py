@@ -56,6 +56,11 @@ urlpatterns = [
     path('Ventas/edit/<int:pk>/', login_required(views.Ventas_Update), name="empleado_mofif"),
     path('Ventas/delete/<int:pk>/', login_required(views.ventas_Delete), name="empleado_mofif"),
 
+    path('Subscription/Lista/', login_required(views.subs_list.as_view()), name="subs lista" ),
+    path('Subscription/detail/<int:pk>/',login_required(views.subs_detail), name="detail"),
+    # path('Subscription/modif/<int:pk>/', login_required(views.empleado_modif), name="empleado_mofif"),
+    path('Subscription/delete/<int:pk>/', login_required(views.subs_delete.as_view()), name="empleado_mofif"),
+
     # Clientes Vistas
     path('Contact/', views.contact),
     path('Service/', views.service),

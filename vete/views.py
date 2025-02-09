@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet, PedidoForm, DetallePedidoFormSet, VentaForm, VentaFormSet, FormSubscription
-from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta
+from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta, Subscription
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.forms.models import model_to_dict
@@ -510,6 +510,42 @@ def ventas_Delete(request, pk):
     return render(request, 'Admin/Ventas/delete.html')
 # ---------------------------- Ventas --------------------------------------------[End]
 
+# ---------------------------- subs ----- 
+class subscription_mainclass:
+    model = Subscription
+    fields = ('__all__')
+    exclude = ('id',)
+
+class subs_list(subscription_mainclass, ListView):
+    template_name = 'Admin/subscription/lista.html'
+    paginate_by = 10
+    context_object_name = "obj"
+    success_url = '/Subscription/Lista/'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(Q(Nombre__icontains=query) | Q(Gmail__icontains=query))
+            print([queryset])
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        return context
+
+
+
+class subs_delete(subscription_mainclass, DeleteView):
+    template_name = "Admin/subscription/delete.html"
+    success_url = "/Subscription/Lista/"
+    
+def subs_detail(request, pk):
+    subs = Subscription.objects.get(pk=pk)
+    return render(request, "Admin/subscription/detalle.html", {"obj": subs})
+# ----subs[end]
+
 
 # --------------------------- Clientes Vistas ------------------------------------
 def contact(request):
@@ -528,3 +564,4 @@ def articulos_detalle(request,pk):
     context = {"obj": art_selected}
     print(art_selected.codigo)
     return render(request, 'Clientes/aticulodetalle.html', context)
+

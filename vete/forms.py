@@ -10,10 +10,12 @@ class EmpleadoForm(forms.ModelForm):
 class FormSubscription(forms.ModelForm):
     class Meta:
         model = Subscription
-        fields = ["Gmail","asunto"]
+        fields = ["Gmail","asunto", "Nombre"]
         widgets = {
         "Gmail":forms.TextInput(attrs={"type":"email", "placeholder":"Example@Gmail.com"}),
-        "asunto":forms.TextInput(attrs={"type":"text", "placeholder":"Boletin de productos"})
+        "asunto":forms.TextInput(attrs={"type":"text", "placeholder":"Boletin de productos"}),
+        "Nombre":forms.TextInput(attrs={"type":"text", "placeholder":"Nombre"})
+
         }
 
         

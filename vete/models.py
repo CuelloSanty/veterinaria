@@ -196,4 +196,4 @@ class DetalleVenta(models.Model):
 class Subscription(models.Model):
     Gmail = models.CharField(max_length=125)
     asunto = models.CharField(max_length=200,default='')
-    Content = models.CharField(max_length=1000, default='', blank=True)
+    Nombre = models.CharField(max_length=1000, default='', blank=True)
