@@ -26,6 +26,7 @@
                     </div>
                 </form>
             </div>
+            <div style="width: 100%; overflow-x: scroll;">
             <table class="table table-responsive table-striped" style="width: fit-content; margin: 0 auto;">
                 <thead>
                     <tr>
@@ -34,6 +35,7 @@
                         <th>Nombre</th>
                     </tr>
                 </thead>
+              
                 <tbody class="table-group-divider">
                     {% for p in obj %}
                     <tr >
@@ -43,13 +45,14 @@
                         <td>
                             {% if user.is_staff %}
                             <a class="btn btn-danger" href="/Subscription/delete/{{p.id}}">Borrar</a>
-                            <a href="/Subscription/detail/{{p.id}}/" class="btn btn-success">Detalle</a>
                             {% endif %}
+                            <a href="/Subscription/detail/{{p.id}}/" class="btn btn-success">Detalle</a>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            </div>
             <div class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
                 <a class="btn btn-outline-primary mb-3" href="?page=1">Primera</a>
