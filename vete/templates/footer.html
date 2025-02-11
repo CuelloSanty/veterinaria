@@ -28,7 +28,7 @@
   <div class="modal-dialog">
     <div class="modal-content" style="width: 100%;">
       <div class="modal-header" style="width: 100%:">
-        <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">Proporcione nos tus datos necesarios</h1>
+        <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">Proporcione los datos necesarios:</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="width: 100%;">
@@ -38,7 +38,7 @@
                         <form method="post" class="footer-subscribe" style="display: flex; align-items:center; width: 100%;">
                             {% csrf_token %}
                         {{form.as_p}}
-                        <button type="submit">
+                        <button type="submit" style="background-color: rgb(162, 201, 238); color: #111420">
                             Suscribirse
                         </button>
                     </form>
