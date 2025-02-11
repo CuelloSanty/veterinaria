@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500&display=swap');
 
 :root {
-    --footer-background: #2D2D33;
-    --text-color: #DAEEFE;
-    --text-gray: #e1e1e1;
+    --footer-background: rgb(162, 201, 238);
+    --text-color: #111420;
+    --text-gray: #ad63f6;
     --text-heading-gray: #b9b9b9;
 }
 
