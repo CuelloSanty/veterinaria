@@ -14,7 +14,9 @@
     <div class="container">
         <h1 class="mt-4 mb-4">Detalle de Atencion</h1>
         <a href="javascript:history.back()" class="btn btn-secondary mb-3">Volver</a>
+        {% if staff_user %}
         <a href="/Atencion/edit/{{atencion.id}}" class="btn btn-warning mb-3">Editar</a>
+        {% endif %}
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>

@@ -15,45 +15,41 @@ def function(db_formset_after, db_formset_before,DbToChanged):
         if operation == 1:  
             db.cantidad += cantidad
             db.save()
-
         if operation == 2:
             if not cantidad > db.cantidad:
                 db.cantidad -= cantidad
                 db.save()
-            else: return None
         else: pass
-    def GetPreviousToCompare(db,key_prev, db_formset_after, param=None):
+    def GetPreviousToCompare(db_formset_after,id_before, before):
         op = None
-        db_prev = db.get(id=key_prev)
-        after = {"id":db_prev.id,"cantidad":db_prev.cantidad,"art":db_prev.articulo}
-        
+        cantidad = None
+        if  id_before == None: 
+            return PushToDb(before["art"].codigo, before["cantidad"], 2, DbToChanged)
+        if not id_before == None:
+            db_prev = db_formset_after.get(id=int(str(id_before)))
+            after = {"id":db_prev.id,"cantidad":db_prev.cantidad,"art":db_prev.articulo}
         # Operations
-        if after["cantidad"] < param["cantidad"]:op = 2
-        if after["cantidad"] > param["cantidad"]:op = 1
-        if after["cantidad"] == param["cantidad"]:op = 0
-        if after["art"] != param["art"]: PushToDb(after['art'].codigo, after['cantidad'], 1, DbToChanged)
-
-        PushToDb(param["art"].codigo, param["cantidad"],op,DbToChanged)
+            if after["cantidad"] < before["cantidad"]:
+                cantidad = after["cantidad"] - before["cantidad"]
+                op = 1
+            if after["cantidad"] > before["cantidad"]:
+                cantidad = before["cantidad"] - after["cantidad"]
+                op = 2
+            if before["cantidad"] == 0: 
+                PushToDb(before["art"].codigo,after["cantidad"],1 , DbToChanged)
+            PushToDb(before["art"].codigo, cantidad ,op,DbToChanged)
 
     deleted_forms = db_formset_before.deleted_forms
     if deleted_forms:
         for form in deleted_forms:
-            cleaned_form = form.cleaned_data
-            data = GetData(cleaned_form)
-            PushToDb(data['art'].codigo, data["cantidad"], 1, DbToChanged)
+            data = GetData(form.cleaned_data)
+            PushToDb(data['art'].codigo, data["cantidad"], 2, DbToChanged)
     if db_formset_before:
         for form in db_formset_before:
-            if form.has_changed(): 
-                cleaned_form = form.cleaned_data
-                data = GetData(cleaned_form)
-                if not form in db_formset_after: PushToDb(data['art'].codigo, data["cantidad"],2, DbToChanged)
-                if not data["id"] == None: GetPreviousToCompare(db_formset_after,int(str(data["id"])),db_formset_after,data)
-
-
-
-
-
-# ----------------------------- Index -----------------------------------
+            if form.has_changed():   
+                data = GetData(form.cleaned_data)
+                GetPreviousToCompare(db_formset_after, data["id"], data)
+    # ----------------------------- Index -----------------------------------
 def index_public(request):
     if request.method == 'POST':
         form = FormSubscription(request.POST)
@@ -85,7 +81,7 @@ class Art_list(Articulos_vista, ListView):
         queryset = super().get_queryset()
         query = self.request.GET.get('q')
         if query:
-            queryset = queryset.filter(Q(nombre__icontains=query) | Q(descripcion__icontains=query))
+            queryset = queryset.filter(Q(nombre__icontains=query) | Q(descripcion__icontains=query) | Q(tipo__icontains=query) | Q(marca__icontains=query))
         return queryset
 
     def get_context_data(self, **kwargs):
