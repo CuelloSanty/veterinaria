@@ -12,3 +12,31 @@
 .borrar svg{
   width: 1.5rem;
 }
+
+.btn-nuevo {
+  background-color: rgb(162, 201, 238);
+  color: #111420;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-nuevo:hover {
+  background-color: rgb(129, 163, 195);
+  cursor: pointer;
+}
+
+.btn-calendario {
+  background-color: #ad63f6;
+  color: #111420;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-calendario:hover {
+  background-color: #b487e2;
+  cursor: pointer;
+}

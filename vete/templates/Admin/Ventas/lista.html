@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <!doctype html>
 <html>
@@ -6,6 +7,9 @@
         <meta charset="utf-8">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style/lista.css' %}">
+        {% endblock css %}
         <title>Ventas</title>
     
         <link rel="author" href="humans.txt">
@@ -14,22 +18,24 @@
         <br>
         <br>
         <br>
-        <div id="contenido" class="container">
+        <div id="contenido" class="container"><br>
         <div id="titulo" class="row pb-3">
             <h2 class="col-9 col-md-6">Ventas</h2>
             <form method="GET" class="d-none d-md-table-cell col-md-4">
                 <div class="input-group">
                     <input type="text" class="form-control" name="q" value="{{ query }}" \
                         placeholder="Venta...">
-                    <button class="btn btn-primary text-light" type="submit">
-                        Buscar
+                    <button class="btn btn-nuevo" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#111420" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
                     </button>
                 </div>
 
                
             </form>
             <div class="col-3 col-md-2 text-end">
-                <a class="btn btn-primary w-100" href="/Ventas/create/">Nuevo...</a>
+                <a class="btn btn-nuevo" href="/Ventas/create/">Nuevo</a>
             </div>
         </div>
 
