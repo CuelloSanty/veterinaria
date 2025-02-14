@@ -155,3 +155,23 @@ label {
   .submit:active{
     transform: scale(0.96);
   }
+
+  .buttons-container {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+    position: relative; /* Para que la imagen se posicione en relación con este div */
+}
+
+.icon-container {
+    position: absolute; /* Posiciona la imagen sobre los botones */
+    right: 0; /* La coloca a la derecha */
+    top: 50%; /* Ajusta la posición verticalmente */
+    transform: translateY(50%); /* Mueve la imagen hacia arriba */
+}
+
+.icon-container img {
+    width: 35%; /* Tamaño de la imagen */
+    height: auto;
+    opacity: 0.9; /* Para que no sea demasiado intrusiva */
+    transform: translateX(140%);
+}

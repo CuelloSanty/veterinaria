@@ -14,8 +14,14 @@
     <form method="post">
         {% csrf_token %} 
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
-        <button onclick="history.back()">Cancelar</button>
+        
+        <div class="buttons-container">
+            <button type="submit">Guardar</button>
+            <button type="button" onclick="history.back()">Cancelar</button>
+        </div>
+        <div class="icon-container">
+            <img src="{% static 'images/perritos1.png' %}" alt="Icono" class="icon">
+        </div>
     </form>
     <br><br>
 </body>
