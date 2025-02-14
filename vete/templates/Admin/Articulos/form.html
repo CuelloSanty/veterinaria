@@ -1,21 +1,24 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Articulos</title>
     {% block css %}
- <link rel="stylesheet" href="{% static '\style\forms.css' %}">
- {% endblock css%}
+        <link rel="stylesheet" href="{% static '\style\forms.css' %}">
+    {% endblock css%}
 </head>
 <body>
-
+    <br><br><br><br><br>
     <h2>{% if view.action == 'add' %}Crear{% else %}Actualizar{% endif %} Item</h2>
-    <button onclick="history.back()">regresar al menu anterior</button>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Guardar</button>
+        <button onclick="history.back()">Cancelar</button>
     </form>
+    <br><br>
 
 <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -25,3 +28,4 @@
 </script>
 </body>
 </html>
+{% endblock  %}
