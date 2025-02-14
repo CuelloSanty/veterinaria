@@ -40,3 +40,31 @@
   background-color: #b487e2;
   cursor: pointer;
 }
+
+.btn-modificar {
+  background-color: #48d7aa;
+  color: #111420;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-modificar:hover {
+  background-color: #58ebbc;
+  cursor: pointer;
+}
+
+.btn-borrar {
+  background-color: #b487e2;
+  color: #111420;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-borrar:hover {
+  background-color: #c394f2;
+  cursor: pointer;
+}
