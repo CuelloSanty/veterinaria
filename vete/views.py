@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.urls import reverse_lazy
 from datetime import datetime
-
+########################################################
 def function(db_formset_after, db_formset_before,DbToChanged):
     def GetData(cleaned_form):
         return {"id":cleaned_form.get('id'),"cantidad": cleaned_form.get('cantidad'),"art":cleaned_form.get('articulo')}
