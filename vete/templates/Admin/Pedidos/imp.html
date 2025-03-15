@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle Pedido</title>
+  <link rel="stylesheet" type="text/css" href="{% static './style/imp.css' %}">
+</head>
+<body>
+
+    <script>
+        // Función para actualizar el contenido del label con la fecha y hora
+        function actualizarLabel() {
+            const ahora = new Date();
+
+            // Obtén el mes, día y hora actual
+            const mes = ahora.getMonth() + 1; // Mes en texto
+            const dia = ahora.getDate(); // Día del mes
+            const año = ahora.getFullYear(); // Hora formateada
+
+            // Actualiza el contenido del label
+            const label1 = document.getElementById("año");
+            label1.textContent = `${año}`;
+
+            const label2 = document.getElementById("mes");
+            label2.textContent = `${mes}`;
+
+            const label3 = document.getElementById("dia");
+            label3.textContent = `${dia}`;
+        }
+        // Llama a la función al cargar la página
+        window.onload = actualizarLabel;
+        window.print()
+        // window.onload = history.back()
+</script>
+  <main>
+    <div class="line"></div>
+    <div class="content">
+
+      <div class="head">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill="#1c3f70" d="M62 10.571L53.429 2L32 23.429L10.571 2L2 10.571L23.429 32L2 53.429L10.571 62L32 40.571L53.429 62L62 53.429L40.571 32z"/></svg>
+          <span>
+          <br>
+          <p class="text-head">Documento no<br>valido<br>como factura</p>
+        </span>
+        </span>
+        <h2>Detalle De Pedido</h2>
+      </div>
+
+      <div class="date">
+        <p>Fecha:</p>
+        <div class="año"><label id="año"></label></div>
+        <div class="mes"><label id="mes"></label></div>
+        <div class="Dia"><label id="dia"></label></div>
+      </div>
+      <!-- divisor -->
+      <br>
+      <hr style="background-color:#1c3f70; height:.2rem; width:85%; margin:0 auto;">
+      <br>
+        <!-- information -->
+      <div class="info">
+        <span><p>De(emisor).</p> <label for="">La Chucha</label></span>
+        <span><p>para(receptor).</p> <label for="">{{obj.proveedor}}</label></span>
+        <span><p>Codigo(id).</p> <label for="">{{obj.id}}</label></span>
+      </div>
+
+      <!-- Tabla -->
+      <table>
+        <thead>
+            <tr>
+                <th>Código de Producto</th>
+                <th>Descripción</th>
+                <th>Precio Unitario</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in p %}
+            <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.nombre}} {{x.descripcion}}</td>
+                <td>{{x.precio}}</td>
+                <td>{{x.cantidad}}</td>
+                <td>{{x.total}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+    <div class="total-mount">${{total}}</div>
+    </div>
+  </main>
+</body>
+</html>
+

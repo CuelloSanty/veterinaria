@@ -6,6 +6,9 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.urls import reverse_lazy
 from datetime import datetime
+
+
+
 ########################################################
 def function(db_formset_after, db_formset_before,DbToChanged):
     def GetData(cleaned_form):
@@ -405,7 +408,18 @@ def Pedidos_Create(request):
     else:
         form = PedidoForm()
         formset = DetallePedidoFormSet()
-        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset})
+        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset, "id":pk})
+def imp_pedido(request,pk):
+    obj = Pedido.objects.get(pk=pk)
+    product = DetallePedido.objects.filter(pedido=obj)
+    total = 0
+    p = []
+    
+    for x in product: 
+        total += (x.articulo.precio * x.cantidad)
+        p.append({"id":x.id, "nombre":x.articulo, "precio":x.articulo.precio, "total": x.articulo.precio*x.cantidad, "descripcion":x.articulo.descripcion, "cantidad":x.cantidad})
+
+    return render(request,"Admin/Pedidos/imp.html", {"obj":obj,"total":total, "p":p})
 
 def Pedidos_Update(request, pk):
     ins = Pedido.objects.get(pk=pk)
@@ -423,7 +437,7 @@ def Pedidos_Update(request, pk):
     else:
         form = PedidoForm(instance=ins)
         formset = DetallePedidoFormSet(instance=ins)
-        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset})
+        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset, "id":pk})
 
 def Pedidos_Delete(request, pk):
     obj = Pedido.objects.get(pk=pk)

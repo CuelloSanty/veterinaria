@@ -1,0 +1,30 @@
+<script>
+        // Función para actualizar el contenido del label con la fecha y hora
+        function actualizarLabel() {
+            const ahora = new Date();
+
+            // Obtén el mes, día y hora actual
+            const mes = ahora.getMonth() + 1; // Mes en texto
+
+            const dia = ahora.getDate(); // Día del mes
+            const hora = ahora.toLocaleTimeString(); // Hora formateada
+
+            // Actualiza el contenido del label
+            const label = document.getElementById("fechaHora");
+            label.textContent = `${dia} de ${mes}, ${hora}`;
+        }
+
+        // Llama a la función al cargar la página
+        window.onload = actualizarLabel;
+</script>
+
+<script type="text/javascript">window.print()</script>
+
+<div class="fecha">fecha de transacion: <label id="fechaHora">Cargando...</label>
+</div>
+
+{% set suma = 0 %}
+{% for valor in valores %}
+<li>{{ valor }}</li>
+{% set suma = suma + valor %}
+{% endfor %}

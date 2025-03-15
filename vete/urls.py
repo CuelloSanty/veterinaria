@@ -51,6 +51,8 @@ urlpatterns = [
     path('Pedidos/edit/<int:pk>/', login_required(views.Pedidos_Update), name="empleado_mofif"),
     path('Pedidos/delete/<int:pk>/', login_required(views.Pedidos_Delete), name="empleado_mofif"),
 
+    path('Pedidos/imp/<int:pk>/', login_required(views.imp_pedido), name="impress"),
+
     path('Ventas/Lista/', login_required(views.Ventas_List.as_view()), name="Atencion lista" ),
     path('Ventas/create/', login_required(views.Ventas_Create), name="empleado_create"),
     path('Ventas/edit/<int:pk>/', login_required(views.Ventas_Update), name="empleado_mofif"),
