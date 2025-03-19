@@ -408,7 +408,7 @@ def Pedidos_Create(request):
     else:
         form = PedidoForm()
         formset = DetallePedidoFormSet()
-        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset, "id":pk})
+        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset})
 def imp_pedido(request,pk):
     obj = Pedido.objects.get(pk=pk)
     product = DetallePedido.objects.filter(pedido=obj)
