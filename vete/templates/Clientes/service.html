@@ -13,39 +13,49 @@
 </head>
 <body>
 <br><br><br>
-<br><h1 class="text-center fw-light">Nuestros Servicios</h1>
+<br><h2 class="text-center fw-light">Nuestros Servicios</h2>
 
     <div class="container mt-5">
-        <div id="vacunacion" class="service-section">
-            <span class="d-flex flex-row"><img src="{% static '\assets\vac.svg' %}" style="width: 2rem;"><h2>Vacunación</h2></span>
-            <p>Realizamos vacunación de prevención completa, para perros y gatos sin rango etario.</p>
-        </div>
-        <div id="peluqueria" class="service-section">
-            <span class="d-flex flex-row"><img src="{% static '\assets\pelo.svg' %}" alt="" style="width: 2rem;"><h2>Peluquería</h2></span>
-            <p>Servicios de corte y baño <br> Aclaración: si la mascota no se muestra dócil deberá ser anestesiado.</p>
-        </div>
-        <div id="operaciones" class="service-section">
-            <span class="d-flex flex-row"><img src="{% static '\assets\doc.svg' %}"style="width: 2rem;"><h2>Operaciones</h2></span>
-            <p>Realizamos diversas operaciones, como castraciones, amputaciones, eutanasia, vaciamientos etc.<br> Se le informará si la operaciones es de alta peligrosidad o complejidad.</p>
-        </div>
-        <div id="ventas" class="service-section">
-            <span class="d-flex flex-row"><img src="{% static '\assets\store.svg' %}"style="width: 2rem;"><h2>Ventas</h2></span>
-            <div>
-                <h4>Medicamentos</h4>
-                <p>Contamos con gran variedad de medicamentos, desparasitantes, fármacos etc.</p>
+        <span class="d-flex flex-row" style="gap: 3rem;">
+            <div class="card" style="width: 40rem;">
+                <img class="card-img-top" src="{% static '\images\vacunacion.jpg' %}" alt="img-vete" style="border-radius: 50%; width: 8rem; height: 8rem; padding: 1rem">
+                <div class="card-body">
+                  <h4 class="card-title"><span class="d-flex flex-row" style="gap: 0.5rem;"><img src="{% static '\assets\vac.svg' %}" style="width: 2rem;">Vacunación</span></h4>
+                  <p class="card-text">Realizamos vacunación de prevención completa, para perros y gatos sin rango etario.</p>
+                  <a href="#" class="btn btn-primary" style="background-color: rgb(162, 201, 238); border-color: rgb(158, 196, 231); color: #111420">Pedir Turno</a>
+                </div>
             </div>
-            <div>
-                <h4>Alimento Balanceado</h4>
-                <p>Vendemos únicamente alimento para perros y gatos, puedes ver nuestros <a href="/Articulos/">artículos</a></p>
+            <div class="card" style="width: 40rem;">
+                <img class="card-img-top" src="{% static '\images\pelu.jpg' %}" alt="img-pelu" style="border-radius: 50%; width: 8rem; height: 8rem; padding: 1rem">
+                <div class="card-body">
+                  <h4 class="card-title"><span class="d-flex flex-row" style="gap: 0.5rem;"><img src="{% static '\assets\pelo.svg' %}" style="width: 2rem;">Peluquería</span></h4>
+                  <p class="card-text">Servicios de corte y baño <br> Aclaración: si la mascota no se muestra dócil deberá ser anestesiado.</p>
+                  <a href="#" class="btn btn-primary"  style="background-color: rgb(162, 201, 238); border-color: rgb(158, 196, 231); color: #111420">Pedir Turno</a>
+                </div>
             </div>
-        </div>
+        </span><br>
+
+        <span class="d-flex flex-row" style="gap: 3rem;">
+            <div class="card" style="width: 40rem;">
+                <img class="card-img-top" src="{% static '\images\operacion.jpg' %}" alt="img-operaciones" style="border-radius: 50%; width: 8rem; height: 8rem; padding: 1rem">
+                <div class="card-body">
+                  <h4 class="card-title"><span class="d-flex flex-row" style="gap: 0.5rem;"><img src="{% static '\assets\doc.svg' %}" style="width: 2rem;">Operaciones</span></h4>
+                  <p class="card-text">Realizamos diversas operaciones, como castraciones, amputaciones, eutanasia, vaciamientos etc.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 40rem;">
+                <img class="card-img-top" src="{% static '\images\marca1.png' %}" alt="img-ventas" style="border-radius: 50%; width: 8rem; height: 8rem; padding: 1rem">
+                <div class="card-body">
+                  <h4 class="card-title"><span class="d-flex flex-row" style="gap: 0.5rem;"><img src="{% static '\assets\store.svg' %}" style="width: 2rem;">Ventas</span></h4>
+                  <p class="card-text">Medicamentos: Contamos con gran variedad de medicamentos, desparasitantes, fármacos etc. <br>Aliemento Balanceado: Vendemos únicamente alimento para perros y gatos, consulta nuestras <a href="/Articulos/">marcas.</a></p></p>
+                </div>
+            </div>
+        </span>
+
     </div>
 
-
-
-</body>
+</body><br><br><br><br>
 </html>
-
 {% endblock %}
 
 {% block footer %}
