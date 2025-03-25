@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <script>
+        setTimeout(function() {
+            document.body.style.opacity = "0";
+            setTimeout(function() {
+                window.location.href = "{% url 'Inicio' %}";
+            }, 1000);  // Espera a que termine el efecto antes de cambiar de página
+        }, 2500);
+    </script>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color:rgb(206, 234, 246);
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="miCanvas" width="300" height="300"></canvas>
+
+    <script>
+    const canvas = document.getElementById("miCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const img = new Image();
+    img.src = "{% static 'images/logo-vete.png' %}";
+
+    let opacity = 0;
+    const opacityStep = 0.02;
+
+    img.onload = function () {
+        fadeIn();
+    };
+
+    function fadeIn() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.globalAlpha = opacity;
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        if (opacity < 1) {
+        opacity += opacityStep;
+        requestAnimationFrame(fadeIn);
+        }
+    }
+    </script>
+
+
+</body>
+</html>

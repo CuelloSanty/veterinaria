@@ -53,6 +53,11 @@ def function(db_formset_after, db_formset_before,DbToChanged):
                 data = GetData(form.cleaned_data)
                 GetPreviousToCompare(db_formset_after, data["id"], data)
     # ----------------------------- Index -----------------------------------
+
+def splash_view(request):
+    return render(request, "splash.html")
+
+
 def index_public(request):
     if request.method == 'POST':
         form = FormSubscription(request.POST)
@@ -62,7 +67,7 @@ def index_public(request):
             return redirect("/")
     else:
         form = FormSubscription()
-        return render(request,"index.html", {"form":form})
+    return render(request,"index.html", {"form":form})
 
 def LogOut(request):
     return render(request, 'registration/close-session.html') 
