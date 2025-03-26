@@ -8,7 +8,13 @@
   <link rel="stylesheet" href="{% static 'style\logout.css' %}">
   {% endblock css %}
   <title>LogOut</title>
+  <style>
+    body {
+        background-image: url("{% static 'images/fondologin.jpg' %}");
+    }
+</style>
 </head>
+
 <body>
  <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
@@ -17,17 +23,12 @@
   </div>
   <h3>¿Desea cerrar sesión?</h3>
     <span class="info">
-    </p>Si usted cierra sesión no podrá acceder <br> a todas las funciones de administrador</p>
+    </p>Si usted cierra sesión no podrá acceder <br> a todas las funciones de administrador.</p>
     </span>
   <button class="cerrar" type="submit">
     Cerrar Sesión
   </button>
   <a class="cancel" onclick="history.back()">Cancelar</a>
-  <br>
-  <div class="help">
-    <a href="#">¿Tienes cuenta?</a>
-    <a href="#">¿Tienes dudas?</a>
-  </div>
 </form>
 </body>
 </html>

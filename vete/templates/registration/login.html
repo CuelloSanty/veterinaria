@@ -12,129 +12,15 @@
 
     {% comment %} <link rel="stylesheet" href="styles.css"> {% endcomment %}
     <!-- Fuente de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'style/login.css' %}">
+
     <style>
-        /* Fuente general */
         body {
-            font-family: 'Nunito', sans-serif;
-            color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 30vh;
-            margin: 0;
-            font-size: 100%;
-            
             background-image: url("{% static 'images/fondologin.jpg' %}");
         }
-
-        /* Contenedor principal */
-        .container {
-            max-width: 800px;
-            max-height: 400px;
-            width: 100%;
-            padding: 20px;
-            
-        }
-
-        .titulo {
-            font-size: 250%;
-            color:#bbe1fa;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* Estilo del contenedor de login */
-        #login {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Título del formulario */
-        #login h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Estilo de los inputs */
-        .form-group input[type="text"],
-        .form-group input[type="password"],
-        .form-group input[type="email"] {
-            border-radius: 5px;
-            padding: 0.75rem;
-            width: 100%;
-            border: 1px solid #ddd;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            border-color: #667eea;
-            box-shadow: 0px 0px 8px rgba(102, 126, 234, 0.5);
-        }
-
-        /* Botón de inicio de sesión */
-        .btn-primary {
-            background-color: #667eea;
-            border: none;
-            border-radius: 5px;
-            padding: 0.8rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #5563c1;
-        }
-
-        /* Enlaces en el pie del formulario */
-        .pie-form {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .pie-form a {
-            color: #667eea;
-            text-decoration: none;
-            margin: 0 5px;
-        }
-
-        .pie-form a:hover {
-            text-decoration: underline;
-            color: #5563c1;
-        }
-
-        /* Estilo del enlace inferior "Volver" */
-        .inferior {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .inferior:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsivo */
-        @media (max-width: 500px) {
-            #login {
-                padding: 1.5rem;
-            }
-
-            #login h2 {
-                font-size: 1.5rem;
-            }
-
-            .btn-primary {
-                font-size: 1rem;
-            }
-        }
     </style>
+
 </head>
 <body>
     <div class="container">
@@ -149,10 +35,7 @@
                     <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
                 </form>
                 <div class="pie-form text-center mt-3">
-                    <a href="#">¿Perdiste tu contraseña?</a> | 
-                    <a href="#">¿No tienes cuenta? Regístrate</a>
-                    <br>
-                    <a href="#" class="inferior">Volver</a>
+                    <a class="inferior" onclick="history.back()">Volver</a>
                 </div>
             </div>
         </div>
