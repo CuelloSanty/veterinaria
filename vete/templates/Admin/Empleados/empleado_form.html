@@ -1,11 +1,13 @@
+
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Empleado</title>
     {% block css %}
-<link rel="stylesheet" href="{% static 'style/forms_inline.css' %}">
-{% endblock css %}
+        <link rel="stylesheet" href="{% static 'style/forms_inline.css' %}">
+    {% endblock css %}
 </head>
 <body>
     <br>
@@ -14,17 +16,9 @@
     {% if var == "edit" %}
     <style type="text/css">
         :root {
-          --color-50: #fdfde9;
-          --color-100: #fafbc6;
-          --color-200: #f9f68f;
-          --color-300: #f5ea4f;
-          --color-400: #f0d91f;
-          --color-500: #e0c112;
-          --color-600: #c1970d;
-          --color-700: #a9780f;
-          --color-800: #805713;
-          --color-900: #6d4716;
-          --color-950: #3f2509;
+          --color-50:rgb(246, 251, 247);
+          --color-100:rgb(224, 240, 229);
+          --color-200:rgb(206, 231, 207);
       }
     </style>
     {% endif %}
