@@ -48,6 +48,7 @@
 
                 <tbody>
                     {% for m in Mascota %}
+                    {% if m.delete_1 == False %}
                     <tr>
                         <td>{{ m.nombre }}</td>
                         <td>{{ m.raza }}</td>
@@ -58,13 +59,15 @@
                             <div class="d-flex justify-content-end align-items-end mb-3">
                                 {% if user.is_staff %}
                                 <a class="btn btn-modificar"  href="/Mascota/{{m.id}}/edit">Modificar</a>
-                                <a class="btn btn-borrar" href="/Mascota/{{m.id}}/delete">Borrar</a>
+                                <!-- <a class="btn btn-borrar" href="/Mascota/{{m.id}}/delete">Borrar</a> -->
+                                <a class="btn btn-borrar" href="/Mascota/{{m.id}}/delete/{{'Mascota'}}/">Borrar</a>
                                 {% endif %}
 
                             </div>
                         </td>
                     </tr>
                 </tbody>
+                {% endif %}
                 {% endfor %}
             </table>
 

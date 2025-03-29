@@ -6,6 +6,7 @@ class Proveedore(models.Model):
     direccion = models.CharField(max_length=50, blank=True, null=True)
     telefono = models.CharField(max_length=15)
     email = models.EmailField(unique=True,  blank=True, null=True)
+    delete_1 = models.BooleanField(default=False)
     
     def __str__(self):
         return self.nombre
@@ -62,6 +63,9 @@ class Articulo(models.Model):
 
     proveedor = models.ForeignKey(Proveedore, related_name='Articulos', on_delete=models.CASCADE)
     stock_minimo = models.IntegerField(blank=True, null=True)
+
+    # Eliminacion
+    delete_1 = models.BooleanField(default=False)
     
     # Campo
     tipo = models.CharField(max_length=5, choices=tipo, default=MEDICAMENTO)
@@ -83,6 +87,7 @@ class Empleado(models.Model):
     Turno = [(MAN,"Mañana"),(TAR,"Tarde"),(FUT,"Completa")]
     TurnoChoice = models.CharField(max_length=8, choices=Turno, default="")
     sueldo = models.IntegerField(default=None)
+    delete_1 = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nombre
@@ -100,6 +105,7 @@ class Cliente(models.Model):
     direccion = models.CharField(max_length=50, blank=True, null=True)
     telefono = models.CharField(max_length=10,  blank=True, null=True)
     email = models.EmailField(unique=True,  blank=True, null=True)
+    delete_1 = models.BooleanField(default=False)
     
     def __str__(self):
         return self.nombre
@@ -109,6 +115,7 @@ class Mascota(models.Model):
     raza = models.CharField(max_length=30,  blank=True, null=True)
     edad = models.IntegerField( blank=True, null=True)
     cliente = models.ForeignKey(Cliente, related_name='Clientes', on_delete=models.PROTECT)
+    delete_1 = models.BooleanField(default=False)
     
     def __str__(self):
         return self.nombre

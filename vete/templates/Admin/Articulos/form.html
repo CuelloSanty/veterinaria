@@ -23,6 +23,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             var input = document.getElementById('id_vencimiento');
             input.setAttribute('type', 'date');
+
+            var del = document.getElementById('id_delete_1')
+            del.style.display = "none";
+
+            var label = document.querySelector('label[for="id_delete_1"]');
+            label.style.display = "none"; 
         });
 </script>
 </body>

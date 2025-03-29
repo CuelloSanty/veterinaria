@@ -47,6 +47,7 @@
 
                 <tbody>
                     {% for c in Cliente %}
+                    {% if c.delete_1 == False %}
                     <tr>
                         <td>{{ c.nombre }}</td>
                         <td>{{ c.direccion }}</td>
@@ -57,13 +58,15 @@
                             <div class="d-flex justify-content-end align-items-end mb-3">
                                 {% if user.is_staff %}
                                 <a class="btn btn-modificar"  href="/Cliente/{{c.id}}/edit">Modificar</a>
-                                <a class="btn btn-borrar" href="/Cliente/{{c.id}}/delete">Borrar</a>
+                                <!-- <a class="btn btn-borrar" href="/Cliente/{{c.id}}/delete">Borrar</a> -->
+                                <a class="btn btn-borrar" href="/Cliente/{{c.id}}/delete/{{'Cliente'}}/">Borrar</a>
                                 {% endif %}
 
                             </div>
                         </td>
                     </tr>
                 </tbody>
+                {% endif %}
                 {% endfor %}
             </table>
 

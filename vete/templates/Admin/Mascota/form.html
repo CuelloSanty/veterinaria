@@ -17,5 +17,12 @@
         <button type="submit">Guardar</button>
         <button onclick="history.back()">Cancelar</button>
     </form>
+     <script type="text/javascript">
+            var del = document.getElementById('id_delete_1')
+            del.style.display = "none";
+    
+            var label = document.querySelector('label[for="id_delete_1"]');
+            label.style.display = "none"; 
+        </script>
     <br><br>
 {% endblock  %}

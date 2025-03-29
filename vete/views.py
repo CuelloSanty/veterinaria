@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import EmpleadoForm, AdelantoFormSet, AtencionForm, ArtAtencionFormSet, PedidoForm, DetallePedidoFormSet, VentaForm, VentaFormSet, FormSubscription
 from .models import Empleado, Adelanto, Articulo, Proveedore, Cliente, Mascota, Atencione, ArticuloAtencion, Pedido, DetallePedido, Venta, DetalleVenta, Subscription
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -73,6 +73,24 @@ def LogOut(request):
     return render(request, 'registration/close-session.html') 
 
 # ----------------------------------------------------------------------[End]
+
+
+
+# General fuction for internal database currency
+def SupRegToDb(request, pk, db):
+    set_db = {"Empleado":Empleado, "Adelanto":Adelanto, "Articulo":Articulo, "Proveedore":Proveedore, "Cliente":Cliente, "Mascota":Mascota}
+
+    set_url = {"Articulo":"/Articulos/Lista/", "Proveedore":"/Proveedor/Lista/", "Cliente":"/Cliente/Lista/", "Empleado":"/Empleado/Lista/", "Mascota":"/Mascota/Lista/"}
+
+    set_template = {"Articulo":'admin/Articulos/delete.html', "Proveedore":'Admin/Proveedor/delete.html', "Cliente":'Admin/Cliente/delete.html',"Empleado":'Admin/Empleados/delete.html', "Mascota":'Admin/Mascota/delete.html'}
+
+    if request.method == "POST":
+        db_to_change = set_db[db].objects.get(pk=pk)
+        db_to_change.delete_1 = True
+        db_to_change.save()
+        return redirect(set_url[db])
+    else:
+        return render(request,set_template[db])
 
 # --------------------> Articulos
 class Articulos_vista:
@@ -217,7 +235,7 @@ class Prov_Update(proveedor_mainclass, UpdateView):
     success_url = '/Proveedor/Lista/'
 
 class Prov_Delete(proveedor_mainclass, DeleteView):
-    template_name = "Admin/Proveedor/delete.html"
+    template_name = 'Admin/Proveedor/delete.html'
     success_url = '/Proveedor/Lista/'
 
 # ------------------------- Proveedores ------------------------------[end]
@@ -256,7 +274,7 @@ class Client_Update(cliente_mainclass, UpdateView):
 
 
 class Client_Delete(cliente_mainclass, DeleteView):
-    template_name = "Admin/Cliente/delete.html"
+    template_name = 'Admin/Cliente/delete.html'
     success_url = "/Cliente/Lista/"
 
 # -------------------------   Cliente   ------------------------------[End]
@@ -401,30 +419,47 @@ class Pedidos_List(ListView):
         return context
 
 def Pedidos_Create(request):
-    if request.method == "POST":
-        form = PedidoForm(request.POST)
-        formset = DetallePedidoFormSet(request.POST)
-        if form.is_valid() and formset.is_valid():
-            function([],formset,Articulo)
-            form = form.save()
-            formset.instance = form
-            formset.save()
-            return redirect('/Pedidos/Lista/')
-    else:
-        form = PedidoForm()
-        formset = DetallePedidoFormSet()
-        return render(request, 'Admin/Pedidos/form.html',{"form":form, "formset":formset})
-def imp_pedido(request,pk):
-    obj = Pedido.objects.get(pk=pk)
-    product = DetallePedido.objects.filter(pedido=obj)
-    total = 0
-    p = []
-    
-    for x in product: 
-        total += (x.articulo.precio * x.cantidad)
-        p.append({"id":x.id, "nombre":x.articulo, "precio":x.articulo.precio, "total": x.articulo.precio*x.cantidad, "descripcion":x.articulo.descripcion, "cantidad":x.cantidad})
+    try:
+        if request.method == "POST":
+            form = PedidoForm(request.POST)
+            formset = DetallePedidoFormSet(request.POST)
+            if form.is_valid() and formset.is_valid():
+                function([], formset, Articulo)
+                form = form.save()
+                formset.instance = form
+                formset.save()
+                return redirect('/Pedidos/Lista/')
+        else:
+            form = PedidoForm()
+            formset = DetallePedidoFormSet()
+            return render(request, 'Admin/Pedidos/form.html', {"form": form, "formset": formset})
+    except Exception as e:
+        # Manejo de errores
+        print(f"Error: {e}")
+        return render(request, 'Admin/Pedidos/error.html', {"error": str(e)})
 
-    return render(request,"Admin/Pedidos/imp.html", {"obj":obj,"total":total, "p":p})
+def imp_pedido(request, pk):
+    try:
+        obj = Pedido.objects.get(pk=pk)
+        product = DetallePedido.objects.filter(pedido=obj)
+        total = 0
+        p = []
+        for x in product:
+            total += (x.articulo.precio * x.cantidad)
+            p.append({
+                "id": x.id,
+                "nombre": x.articulo,
+                "precio": x.articulo.precio,
+                "total": x.articulo.precio * x.cantidad,
+                "descripcion": x.articulo.descripcion,
+                "cantidad": x.cantidad
+            })
+        return render(request, "Admin/Pedidos/imp.html", {"obj": obj, "total": total, "p": p})
+    except Exception as e:
+        # Manejo de errores
+        print(f"Error: {e}")
+        return render(request, 'Admin/Pedidos/Lista.html', {"error": str(e)})
+
 
 def Pedidos_Update(request, pk):
     ins = Pedido.objects.get(pk=pk)

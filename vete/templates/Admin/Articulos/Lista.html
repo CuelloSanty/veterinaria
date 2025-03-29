@@ -51,6 +51,7 @@
     
             <tbody>
                 {% for a in Art %}
+                {% if a.delete_1 == False %}
                 <tr>
                     <td>{{ a.codigo }}</td>
                     <td>{{ a.nombre }}</td>
@@ -63,13 +64,15 @@
                         <div class="d-flex justify-content-end align-items-end mb-3">
                         {% if user.is_staff %}
                             <a class="btn btn-modificar"  href="/Articulos/{{a.codigo}}/edit">Modificar</a>
-                            <a class="btn btn-borrar" href="/Articulos/{{a.codigo}}/delete/">Borrar</a>
+                            
+                            <a class="btn-borrar btn" href="/Articulos/{{a.codigo}}/delete/{{'Articulo'}}">Borrar</a>
                         {% endif %}
 
                         </div>
                     </td>
                 </tr>
             </tbody>
+            {% endif %}
             {% endfor %}
         </table>
 

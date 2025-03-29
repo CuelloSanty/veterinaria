@@ -52,6 +52,7 @@
 
   <tbody class="table-group-divider">
     {% for p in proveedores %}
+    {% if p.delete_1 == False %}
     <tr>
       <td>{{ p.cuit }}</td>
       <td>{{ p.nombre }}</td>
@@ -63,14 +64,14 @@
         {% if user.is_staff %}
           <a class="btn btn-modificar" href="/Proveedor/{{p.cuit}}/edit/">
             Modificar</a>
-          <a class="btn btn-borrar" href="/Proveedor/{{p.cuit}}/delete/">
-            Borrar</a>
+            <a class="btn btn-borrar" href="/Proveedor/{{p.cuit}}/delete/{{'Proveedore'}}">Borrar</a>
             {% endif %}
 
         </div>
       </td>
     </tr>
   </tbody>
+  {% endif %}
   {% endfor %}
 </table>
 
