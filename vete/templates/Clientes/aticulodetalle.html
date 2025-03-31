@@ -5,30 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aticulo Detalle</title>
+    <title>Articulo Detalle</title>
 </head>
 <body>
-    <br>
-    <br>
+    <br><br><br>
 
     <main>
     <div class="cont">
         <img src="{{ obj.img }}" alt="">
     </div>
     <div class="preview">
-            <p>Codigo: {{ obj.codigo }}</p>
-            <h2>Nombre: {{  obj.nombre }}</h2>
-            <p>Descripcion: {{  obj.descripcion }}</p>
-            <p>Cantidad:<span>{{  obj.cantidad }}</span></p>
+            <h4>{{  obj.nombre }}</h4>
+            <p>{{  obj.descripcion }}</p>
             <hr>
             <p>Marca: {{  obj.marca }}</p>
-            <p>Peso: {{  obj.peso }}</p>
-            <p>Talle: {{  obj.talle }}</p>
-            <p>Vencimiento: {{  obj.vencimiento }}</p>
-            <hr>
-            <p>Unidad: {{  obj.unidad }}</p>
-            <p>Proveedor: {{  obj.proveedor }}</p>
-            <p>Stock Minimo: {{  obj.stock_minimo }}</p>
             <hr>
             <p>Tipo Mascota: {{  obj.tipo_mascota }}</p>
             <p>Tipo: {{  obj.tipo }}</p>
@@ -40,61 +30,51 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 *{
-   
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 main{
-   
     font-family: "Roboto Mono", monospace;
-      font-optical-sizing: auto;
-      font-weight: 400;
-  
+    font-optical-sizing: auto;
+    font-weight: 400;
     display: flex;
-    width: 100%;
+    width: 90%;
     flex-direction: row;
+    margin: 8rem;
 }
 
 .cont{
-    background-color: #282833;
-    padding-top: 10px;
-   width: auto;
-   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5UIW3R-yofiEcKXVEeWM2d5N3d9LO-khCag&s");
-   background-repeat: no-repeat;
-   background-size: cover;
- 
-
+    background-color: white;
+    width: auto;
+    border: 3px solid rgb(219, 234, 247);
 }
 .cont img{
-    height: 24rem;
-    width: 24rem;    
-    border-radius: 18rem;
+    height: 15rem;
+    width: 15rem;
 }
 .preview{
     padding-left: 10px;
-    padding-top: 10px;
-    background-color: #F0F2F7;
+    padding-top: 15px;
+    background-color:rgb(219, 234, 247);
     display: flex;
     flex-direction: column;
     width: 70%;
 }
 
-@media screen and (max-width: 690px){
+@media screen and (max-width: 992px){
     main{
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 10px;
+        margin: 2.5rem;
     }
     .cont img{
         width: 100%;
-        border-radius: 10px;
-        
-        
     }
-
 }
+
 </style>
 
 {% endblock %}
