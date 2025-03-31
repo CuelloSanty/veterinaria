@@ -70,6 +70,7 @@ urlpatterns = [
 
     path('Articulos/', views.articulos),
     path('Articulos/detalle/<int:pk>/', views.articulos_detalle),
+    path('Articulos/categoria/<str:categoria>/', views.Art_list.as_view(), name='filtrar_articulos'),
 
 ]
 

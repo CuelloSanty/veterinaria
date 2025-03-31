@@ -98,21 +98,34 @@ class Articulos_vista:
     fields = ('__all__')
     success_url = reverse_lazy('Articulos')
 
-class Art_list(Articulos_vista, ListView):
+class Art_list(ListView):
+    model = Articulo
     template_name = 'admin/Articulos/Lista.html'
     context_object_name = "Art"
-    paginate_by = 10
+    paginate_by = 10 
 
     def get_queryset(self):
         queryset = super().get_queryset()
         query = self.request.GET.get('q')
+        categoria = self.kwargs.get('categoria')
+
         if query:
-            queryset = queryset.filter(Q(nombre__icontains=query) | Q(descripcion__icontains=query) | Q(tipo__icontains=query) | Q(marca__icontains=query))
+            queryset = queryset.filter(
+                Q(nombre__icontains=query) |
+                Q(descripcion__icontains=query) |
+                Q(tipo__icontains=query) |
+                Q(marca__icontains=query)
+            )
+        
+        if categoria:
+            queryset = queryset.filter(tipo=categoria)
+
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['query'] = self.request.GET.get('q', '')  # Enviar el valor de la búsqueda al contexto
+        context['query'] = self.request.GET.get('q', '')
+        context['categoria'] = self.kwargs.get('categoria', '')
         return context
 
 class Art_Create(Articulos_vista, CreateView):

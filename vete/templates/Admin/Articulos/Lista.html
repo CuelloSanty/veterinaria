@@ -34,6 +34,18 @@
             </form>
             <div class="col-3 col-md-2 text-end">
                 <a class="btn btn-nuevo" href="/Articulos/add/">Nuevo</a>
+            
+                <div class="dropdown">
+                    <button class="btn btn-calendario dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filtrar
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/Articulos/Lista">Todos</a>
+                    <a class="dropdown-item" href="{% url 'filtrar_articulos' 'Alim' %}">Alimentos</a>
+                    <a class="dropdown-item" href="{% url 'filtrar_articulos' 'Med' %}">Medicamentos</a>
+                    <a class="dropdown-item" href="{% url 'filtrar_articulos' 'Acc' %}">Accesorios</a>
+                    </div>
+                </div>
             </div>
         </div>
 

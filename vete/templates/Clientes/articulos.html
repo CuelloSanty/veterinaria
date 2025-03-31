@@ -11,35 +11,32 @@
     {% block  css %}
     <link rel="stylesheet" type="text/css" href="{% static 'style\art.css' %}">
     {% endblock css %}
-    <style>
-        
-    </style>
 </head>
-<body>
-    <br>
-    <br>
-    <div class="conteiner">
-        <!-- Artículos -->
-        <br><h2>Artículos</h2>
-        <section>
-            {% for obj in obj %}
-            <article id="article-{{ obj.codigo }}">
-                <figure>
-                    <img src="{{ obj.img }}" > 
-                </figure>
-                <div class="preview">
-                    <h4>{{ obj.nombre }}</h4>
-                    <p>{{ obj.descripcion }}</p>
-                    <a href="/Articulos/detalle/{{obj.codigo}}">leer mas</a>
-                </div>
-            </article>
-            {% endfor %}
-        </section>
 
+<body>
+    <br><br><br>
+    <br><h2 class="text-center fw-light">Artículos</h2>
+    <div class="container mt-5">
+        <span class="d-flex flex-row" style="gap: 3rem;">
+            <section style="display: grid; gap: 2rem; padding: 5px; max-width: 1200px; margin: auto;"
+            class="grid-container">
+                {% for objeto in obj %}
+                    <div class="card" style="max-width: 18rem; padding:1rem;" id="article-{{ obj.codigo }}">
+                        <img class="card-img-top" style="width:6rem;" src="{{ objeto.img }}" alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ objeto.nombre }}</h5>
+                        <p class="card-text">${{ objeto.precio }}</p>
+                        <a href="/Articulos/detalle/{{ objeto.codigo }}" class="btn btn-primary" style="background-color: rgb(162, 201, 238); border-color: rgb(158, 196, 231); color: #111420">Ver detalle</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section>
+        </span>
+
+        <br><br>
         <h3>Alimento Balanceado</h3>
         <p>Nuestras principales líneas</p>
         <section class="aliment">
-            
             <div>
                 <h3>Eukanuba</h3>
                 <div class="line">
@@ -73,9 +70,8 @@
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQexbGH13okm-PQGM1az1nqWiNHNxOInIQWQw&s">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHsfkKjC0y-ByvHH8Q8kfktAfIGjdhEZDeMQ&s">
             </div>
-
-
         </section>
+        <br><br>
     </div>
 
 </body>
