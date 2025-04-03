@@ -5,19 +5,29 @@
 <html>
 <head>
     <title>Eliminar ítem</title>
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style/form_delete.css' %}">
+    {% endblock css %}
 </head>
 <body>
-    <br><br><br><br>
+    <div class="delete-container">
+        <div class="delete-card">
+            <div class="mb-3">
+                <i class="fas fa-exclamation-circle warning-icon"></i>
+            </div>
+            <img src="{% static 'images/advertencia.svg' %}" alt="advertencia" style="height: 70px; width:70px; padding-bottom: 1rem;">
+            <h4 class="mb-3">¿Está seguro de que desea eliminar este registro?</h4>
+            <p class="text-muted">Esta acción es irreversible.</p>
+
     <div class="container text-center">
-        <h2>¿Desea eliminar este registro?</h2>
         <form method="POST" style="">
             {% csrf_token %}
             <div class="form-check">
                 {{ form.confirm }}
                 <label class="form-check-label" for="confirm">{{ form.confirm.label }}</label>
             </div>
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-            <a onclick="history.back()" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-delete">Eliminar</button>
+            <a onclick="history.back()" class="btn btn-cancel">Cancelar</a>
         </form>
     </div>
 </body>
