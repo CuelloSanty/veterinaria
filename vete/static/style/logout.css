@@ -5,14 +5,14 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 30vh;
-  margin: 0;
+  margin: 5rem;
   font-size: 100%;
 }
 
 form{
   color: rgb(255, 255, 255);
   height: fit-content;
-
+  width: 350px;
   padding: 20px;
   padding-top: 2.7rem;
   padding-bottom: 3rem;
@@ -25,7 +25,7 @@ form{
   transition: all .6s ease-in-out;
 }
 form:hover{
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 .circle{
   display: flex;
@@ -46,7 +46,7 @@ form:hover{
   padding: 10px;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 98%;
 
   background-color: rgb(42, 153, 233);
   color: rgb(255, 255, 255);
@@ -62,7 +62,7 @@ form:hover{
   text-align: center;
   width: 91.9%;
 
-  background-color: #676767;
+  background-color: #6773c4;
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 7px;
@@ -72,16 +72,16 @@ form:hover{
 }
 
 .cancel:hover{
-  color: rgb(131, 199, 248);
-  background-color: rgb(51, 58, 73);
+  color: rgb(247, 247, 248);
+  background-color: #3f4989;
 
 }
 .cancel:active{
   transform: scale(0.97);
 }
 .cerrar:hover{
-  color: rgb(13, 45, 68);
-  background-color: rgb(70, 190, 234);
+  color: rgb(247, 247, 248);
+  background-color: rgb(31, 83, 120);
 }
 .cerrar:active{
   transform: scale(0.97);
@@ -93,7 +93,9 @@ form:hover{
   width: 100%;
   font-size: 17px;
   font-weight: 100;
+  text-align: center;
 }
+
 .help a{
   color: #667eea;
   font-size: 14px;
@@ -101,8 +103,8 @@ form:hover{
   text-decoration: none;
 }
 
-h3{
-  color: #111420;
-  font-weight:bold;
-  font-size:large;
+h2{
+  font-size: 150%;
+  color:#333;
+  text-align: center;
 }

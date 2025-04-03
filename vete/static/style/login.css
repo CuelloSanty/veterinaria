@@ -15,8 +15,12 @@ body {
     max-height: 400px;
     width: 100%;
     padding: 20px;
+    margin:5rem;
+    transition: all .6s ease-in-out;
 }
-
+.container:hover{
+    transform: scale(1.02);
+  }
 .titulo {
     font-size: 250%;
     color:#bbe1fa;
@@ -58,7 +62,7 @@ body {
 
 /* Botón de inicio de sesión */
 .btn-primary {
-    background-color: #667eea;
+    background-color: rgb(42, 153, 233);
     border: none;
     border-radius: 5px;
     padding: 0.8rem;
@@ -69,7 +73,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #5563c1;
+    background-color: #6773c4;
 }
 
 /* Enlaces en el pie del formulario */
