@@ -37,9 +37,9 @@
                         <td>{{ p.Nombre  }}</td>
                         <td>
                             {% if user.is_staff %}
-                            <a class="btn btn-danger" href="/Subscription/delete/{{p.id}}">Borrar</a>
+                            <a class="btn btn-borrar" href="/Subscription/delete/{{p.id}}">Borrar</a>
                             {% endif %}
-                            <a href="/Subscription/detail/{{p.id}}/" class="btn btn-borrar">Detalle</a>
+                            <a href="/Subscription/detail/{{p.id}}/" class="btn btn-nuevo">Detalle</a>
                         </td>
                     </tr>
                     {% endfor %}
