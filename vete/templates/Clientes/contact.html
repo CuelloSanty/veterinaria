@@ -5,23 +5,23 @@
       <br>
       <br>
       <div style="margin-left: 65px;">
-      <br><h2 class="title">Información sobre nosotros</h2>
+      <br><h2 class="text-center fw-light">Información sobre nosotros</h2><br><br>
       <h3 style="color: rgb(69, 123, 194); font-weight: 300;"><img src="" style="width: 35px;">¿Dónde puedes encontrarnos?</h3>
       <p>Felipe Erdman 290, Villa Dolores, Córdoba <span style="color:rgb(226, 128, 0); font-weight: 900;">✩✩✩✩✩</span></p>
-      <p>Estaremos felices de atenderte 😊</p>
+      <p>Estaremos felices de atenderte 😊</p><br>
     </div>
-      <div class="w-100 d-flex aling-items-center">
+      <div class="map-container">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d846.3833581248674!2d-65.1876136304342!3d-31.94642226039069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942cd4a1a5eff309%3A0x26c0a6a8c6595a9c!2sVETERINARIA%20LA%20CUCHA!5e0!3m2!1ses!2sar!4v1731284562827!5m2!1ses!2sar" width="100%" height="600" style="border:0; box-shadow: 0 0 20px 10px rgb(243, 243, 243);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div><br>
+      </div><br><br><br>
       <h3 style="font-weight: 300;font-family: 'Montserrat', cursive;
-      "><img src="{% static 'assets/info1.svg' %}" style="width: 30px;">Información Acerca de Nosotros.</h3>
+      "><img src="{% static 'assets/info1.svg' %}" style="width: 30px; margin-left:55px;">Información De Contacto.</h3>
       <div style="display: flex;flex-direction: column; width: 100%; padding-left: 65px; padding-right: 65px;">
           <div class="contact"><img src="{% static 'assets/phone.svg' %}" alt=""><h5>Teléfono: 0 3544 42-4084</h5></div>
-          <div class="contact"><img src="{% static 'assets/link.svg' %}" alt=""><h5>Nuestras redes:<a href="https://www.instagram.com/veterinarialacucha20/?hl=es-la">Instagram</a></h5></div>
+          <div class="contact"><img src="{% static 'assets/link.svg' %}" alt=""><h5>Nuestras redes: <a href="https://www.instagram.com/veterinarialacucha20/?hl=es-la">Instagram</a></h5></div>
           <div class="contact"><img src="{% static 'assets/code.svg' %}" alt=""><h5>Plus code: 3R37+C6 Villa Dolores, Córdoba</h5></div>
-      </div><br><br>
+      </div><br><br><br>
       <h3 style="font-weight: 300;font-family: 'Montserrat', cursive;
-      "><img src="{% static 'assets/time.svg' %}" style="width: 2.0rem;">Horarios De Atención</h3>
+      "><img src="{% static 'assets/time.svg' %}" style="width: 2.0rem; margin-left:55px;">Horarios De Atención</h3>
       <div style="margin-inline:65px;">
         <table class="table  table-responsive">
           <thead>
@@ -56,9 +56,8 @@
               <td>9am - 1pm  /  6pm - 9pm</td>
             </tr>
           </tbody>
-        </table><br><br>
+        </table><br><br><br><br>
       </div>
-      
 </body>
 </html>
 
@@ -88,7 +87,30 @@
     font-size: medium;
   }
   .contact:hover{
-    background-color: rgb(193, 225, 240);
+    background-color: rgb(218, 239, 249);
+  }
+  tbody tr:first-child {
+    border-top: 3px solid rgb(194, 194, 194) !important;
+  }
+  .map-container {
+    width: 100%;
+    max-width: 200rem;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-left:3.8rem;
+}
+
+  .map-container iframe {
+      width: 95%;
+      height: 500px;
+
+  }
+
+  @media (max-width: 480px) {
+      .map-container iframe {
+          height: 250px;
+          width: 100%;
+      }
   }
 </style>
 {% endblock %}
