@@ -38,10 +38,10 @@ python manage.py createsuperuser
 >Es sumamente Importante que crees un usuario al contrario el sistema entrara en modo fallo
 ### Proyecto Veterina la cucha
 
-### Links a docuemnto de diagramas
+### Links a documento de diagramas
 
 [Documento de diagramas](https://docs.google.com/document/d/1LQO2MToAFLjsmfHMEtaHMNgcC2pTqcuNrIlhqEyJZqk/edit?usp=sharing)
-### Links de docuemnto tesis
+### Links de documento tesis
 
 [Documento_Tesis](https://docs.google.com/document/d/1nzVrZ4r2uNMaKcOJUtP5nHdKVUvF9E-6hl5mMrEZeQI/edit?usp=sharing)
 
