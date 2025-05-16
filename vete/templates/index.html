@@ -9,7 +9,9 @@
   <title>Inicio | Clinica Veterinaria</title>
   <meta name="theme-color" content="#09f">
   <meta name="description" content="Veterinaria La Cucha acompañado de todo el cuidado y cariño">
-
+  {% block  css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style\art.css' %}">
+    {% endblock css %}
 </head>
 
 
@@ -21,7 +23,7 @@
   
   <span style="display: flex;align-items: center;"><h1 style="color: rgb(42, 153, 233);" class=" p-1">Veterinaria La Cucha</h1> 
     <img src="{% static './images/huellas.png' %}" style="width: 4rem;"></span>
-  <p class="lead">Hola! somo Veterinaria La Chucha. Bienvenida/o a nuestro sitio web. Nuestra principal misión es cuidar de tus mascotas. Clínica de pequeños y grandes animales.</p>
+  <p class="lead">Hola! somos Veterinaria La Chucha. Bienvenida/o a nuestro sitio web. Nuestra principal misión es cuidar de tus mascotas. Clínica de pequeños y grandes animales.</p>
     <p class="lead">Diagnóstico de gestación temprana - Servicio de ecografía móvil - Traumatología - Cirugía - Análisis de laboratorio - Internación - Peluquería Canina -
     Alimento balanceado - Artículos varios.
     <p class="lead">Contamos con veterinarios con experiencia, como <a href="https://www.instagram.com/gpnzalol/">Gonzalo Larghi</a> y <a href="https://www.instagram.com/attilifede/">Federico Atili</a></p>
@@ -68,8 +70,59 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-</div>
-<!-- Page Content -->
+  <br><br><br><br><br>
+
+  <br><h4 class="text-center fw-light">¡Cuidar a tu mejor amigo es clave!</h4>
+
+      <div class="container mt-5">
+          <span class="d-flex flex-row" style="gap: 3rem;">
+              <div class="card" style="width: 40rem;">
+                  <img class="card-img-top" src="{% static '\images\info1.png' %}" alt="img-vete" style="width:100%; height:auto;">
+              </div>
+              <div class="card" style="width: 40rem;">
+                  <img class="card-img-top" src="{% static '\images\info2.png' %}" alt="img-pelu" style="width:100%; height:auto;">
+              </div>
+          </span><br>
+  </div>
+<br><br><br>
+<h4 class="text-center fw-light">Conocé nuestras principales marcas</h4>
+  <div class="inicio-marcas">
+    <div class="marcas-container">
+        <div class="marcas">
+            <div class="marca-item">
+                <div class="marca-circle">
+                    <img src="{% static '/images/pedigree.png' %}" alt="pedigree">
+                </div>
+            </div>
+            <div class="marca-item">
+                <div class="marca-circle">
+                    <img src="{% static '/images/royal.png' %}" alt="royalcanin">
+                </div>
+            </div>
+            <div class="marca-item">
+                <div class="marca-circle">
+                    <img src="{% static '/images/eukanuba.png' %}" alt="eukanuba">
+                </div>
+            </div>
+            <div class="marca-item">
+                <div class="marca-circle">
+                    <img src="{% static '/images/raza.png' %}" alt="raza">
+                </div>
+            </div>
+            <div class="marca-item">
+                <div class="marca-circle">
+                    <img src="{% static '/images/optimum.png' %}" alt="optimum">
+                </div>
+            </div>
+            <div class="marca-item">
+                <div class="marca-circle">
+                    <img src="{% static '/images/agility.png' %}" alt="agility">
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+<br><br>
 
 </main>
 <br>
@@ -100,9 +153,29 @@
     height: 40rem;
   }
 
+  .card-img-top{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+  }
+  .card-img-top:hover{
+    transform: scale(1.01);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
 }
 
+.inicio-marcas .marcas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
 
+@media screen and (max-width: 768px) {
+  .inicio-marcas .marca-item {
+    flex: 1 1 22%;
+    max-width: 22%;
+  }
+}
 
 
 </style>
