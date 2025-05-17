@@ -10,6 +10,16 @@
     {% block css%}
     <link rel="stylesheet" href="{% static '' %}">
     {% endblock css %}
+
+    <style>
+        .card{
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover{
+            box-shadow: 0 4px 15px rgba(85, 84, 84, 0.2);
+        }
+    </style>
+
 </head>
 <body>
 <br><br><br>
@@ -21,7 +31,7 @@
                 <img class="card-img-top" src="{% static '\images\vacunacion.jpg' %}" alt="img-vete" style="border-radius: 50%; width: 8rem; height: 8rem; padding: 1rem">
                 <div class="card-body">
                   <h4 class="card-title"><span class="d-flex flex-row" style="gap: 0.5rem;"><img src="{% static '\assets\vac.svg' %}" style="width: 2rem;">Vacunación</span></h4>
-                  <p class="card-text">Realizamos vacunación de prevención completa, para perros y gatos sin rango etario.</p>
+                  <p class="card-text">Realizamos vacunación de prevención completa, para perros y gatos sin rango etario. Nuestro equipo de profesionales se asegura de que las vacunas se apliquen de manera segura y efectiva, siguiendo las pautas de salud actuales.</p>
                   <a href="https://wa.link/zy7zjl" class="btn btn-primary" style="background-color: rgb(162, 201, 238); border-color: rgb(158, 196, 231); color: #111420">Pedir Turno</a>
                 </div>
             </div>
@@ -29,7 +39,8 @@
                 <img class="card-img-top" src="{% static '\images\pelu.jpg' %}" alt="img-pelu" style="border-radius: 50%; width: 8rem; height: 8rem; padding: 1rem">
                 <div class="card-body">
                   <h4 class="card-title"><span class="d-flex flex-row" style="gap: 0.5rem;"><img src="{% static '\assets\pelo.svg' %}" style="width: 2rem;">Peluquería</span></h4>
-                  <p class="card-text">Servicios de corte y baño <br> Aclaración: si la mascota no se muestra dócil deberá ser anestesiado.</p>
+                  <p class="card-text">Ofrecemos servicios de peluquería para mascotas, incluyendo cortes de pelo, baños y cuidado general del pelaje. Nuestros estilistas están capacitados para trabajar con una variedad de razas y tipos de pelaje, asegurando que tu mascota se vea y se sienta genial.
+</p>
                   <a href="https://wa.link/zy7zjl" class="btn btn-primary"  style="background-color: rgb(162, 201, 238); border-color: rgb(158, 196, 231); color: #111420">Pedir Turno</a>
                 </div>
             </div>
@@ -40,14 +51,14 @@
                 <img class="card-img-top" src="{% static '\images\operacion.jpg' %}" alt="img-operaciones" style="border-radius: 50%; width: 8rem; height: 8rem; padding: 1rem">
                 <div class="card-body">
                   <h4 class="card-title"><span class="d-flex flex-row" style="gap: 0.5rem;"><img src="{% static '\assets\doc.svg' %}" style="width: 2rem;">Operaciones</span></h4>
-                  <p class="card-text">Realizamos diversas operaciones, como castraciones, amputaciones, eutanasia, vaciamientos etc.</p>
+                  <p class="card-text">Contamos con un equipo de veterinarios experimentados para realizar procedimientos quirúrgicos, desde cirugías rutinarias hasta intervenciones más complejas. Utilizamos técnicas avanzadas y equipos de última generación para garantizar la seguridad y el bienestar de los animales.</p>
                 </div>
             </div>
             <div class="card" style="width: 40rem;">
                 <img class="card-img-top" src="{% static '\images\marca1.png' %}" alt="img-ventas" style="border-radius: 50%; width: 8rem; height: 8rem; padding: 1rem">
                 <div class="card-body">
                   <h4 class="card-title"><span class="d-flex flex-row" style="gap: 0.5rem;"><img src="{% static '\assets\store.svg' %}" style="width: 2rem;">Ventas</span></h4>
-                  <p class="card-text">Medicamentos: Contamos con gran variedad de medicamentos, desparasitantes, fármacos etc. <br>Aliemento Balanceado: Vendemos únicamente alimento para perros y gatos, consulta nuestras <a href="/Articulos/">marcas.</a></p></p>
+                  <p class="card-text"> Disponemos de una amplia gama de medicamentos y productos para el cuidado de la salud de las mascotas. Nuestro personal capacitado está disponible para asesorarte sobre el uso adecuado de cada producto y responder a tus preguntas. Puedes ver nuestros <a href="/Articulos/"> artículos.</a></p></p>
                 </div>
             </div>
         </span>

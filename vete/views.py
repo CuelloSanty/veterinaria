@@ -132,7 +132,7 @@ class Art_list_tarjeta(ListView):
     model = Articulo
     template_name = 'Clientes/articulos.html'
     context_object_name = "obj"
-    paginate_by = 4
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
