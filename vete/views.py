@@ -658,3 +658,5 @@ def articulos_detalle(request,pk):
     print(art_selected.codigo)
     return render(request, 'Clientes/aticulodetalle.html', context)
 
+def sitemap(request):
+    return render(request, 'sitemap.html')

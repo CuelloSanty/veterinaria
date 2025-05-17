@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .sitemap-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    margin: 40px;
+  }
+
+  .sitemap-box {
+    border: 2px solid #4d8fac;
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin: 10px;
+    background-color: #e6f2f7;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .sitemap-tree {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .sitemap-subtree {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sitemap-line {
+    width: 2px;
+    height: 20px;
+    background-color: #4d8fac;
+    margin: 0 auto;
+  }
+</style>
+
+<br><br><br>
+<div class="sitemap-container">
+  <div class="sitemap-box">Inicio</div>
+  <div class="sitemap-line"></div>
+  <div class="sitemap-tree">
+    <div class="sitemap-subtree">
+      <div class="sitemap-box">Suscripciones</div>
+    </div>
+
+    <div class="sitemap-subtree">
+      <div class="sitemap-box">Servicios</div>
+      <div class="sitemap-line"></div>
+      <div class="sitemap-box">Turnos</div>
+    </div>
+
+    <div class="sitemap-subtree">
+      <div class="sitemap-box">Contacto</div>
+    </div>
+
+    <div class="sitemap-subtree">
+      <div class="sitemap-box">Artículos</div>
+      <div class="sitemap-line"></div>
+      <div class="sitemap-box">Ver todo</div>
+      <div class="sitemap-box">Alimento</div>
+      <div class="sitemap-box">PetShop</div>
+      <div class="sitemap-box">Insumos</div>
+    </div>
+
+    <div class="sitemap-subtree">
+      <div class="sitemap-box">LOGIN</div>
+      <div class="sitemap-line"></div>
+      <div class="sitemap-box">Artículos</div>
+      <div class="sitemap-box">Proveedores</div>
+      <div class="sitemap-box">Clientes</div>
+      <div class="sitemap-box">Empleados</div>
+      <div class="sitemap-box">Mascotas</div>
+      <div class="sitemap-box">Pedidos</div>
+      <div class="sitemap-box">Ventas</div>
+      <div class="sitemap-box">Atención</div>
+      <div class="sitemap-box">Suscripciones</div>
+      <div class="sitemap-box">LOGOUT</div>
+    </div>
+  </div>
+</div>
+<br><br><br>
+
+{% endblock %}
+{% block footer %}
+{% include 'footer.html'%}
+{% endblock %}
