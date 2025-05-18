@@ -10,24 +10,27 @@ from datetime import datetime
 
 
 ########################################################
-def function(db_formset_after, db_formset_before,DbToChanged):
+def function(db_formset_after, db_formset_before,DbToChanged, op_select=True):
     def GetData(cleaned_form):
         return {"id":cleaned_form.get('id'),"cantidad": cleaned_form.get('cantidad'),"art":cleaned_form.get('articulo')}
-    def PushToDb(id, cantidad, operation, db_to_change):
+    def PushToDb(id, cantidad, operation, db_to_change, op_select):
         db = db_to_change.objects.get(pk=id)
-        if operation == 1:  
+        if not op_select:  # Si op_select es False, invertir operaciones
+            operation = 1 if operation == 2 else 2
+
+        if operation == 1:
             db.cantidad += cantidad
             db.save()
-        if operation == 2:
+        elif operation == 2:
             if not cantidad > db.cantidad:
                 db.cantidad -= cantidad
                 db.save()
-        else: pass
+
     def GetPreviousToCompare(db_formset_after,id_before, before):
         op = None
         cantidad = None
         if  id_before == None: 
-            return PushToDb(before["art"].codigo, before["cantidad"], 2, DbToChanged)
+            return PushToDb(before["art"].codigo, before["cantidad"], 2, DbToChanged, op_select)
         if not id_before == None:
             db_prev = db_formset_after.get(id=int(str(id_before)))
             after = {"id":db_prev.id,"cantidad":db_prev.cantidad,"art":db_prev.articulo}
@@ -46,7 +49,7 @@ def function(db_formset_after, db_formset_before,DbToChanged):
     if deleted_forms:
         for form in deleted_forms:
             data = GetData(form.cleaned_data)
-            PushToDb(data['art'].codigo, data["cantidad"], 2, DbToChanged)
+            PushToDb(data['art'].codigo, data["cantidad"], 2, DbToChanged, op_select)
     if db_formset_before:
         for form in db_formset_before:
             if form.has_changed():   
@@ -467,7 +470,7 @@ def Pedidos_Create(request):
             form = PedidoForm(request.POST)
             formset = DetallePedidoFormSet(request.POST)
             if form.is_valid() and formset.is_valid():
-                function([], formset, Articulo)
+                function([], formset, Articulo, op_select=False)
                 form = form.save()
                 formset.instance = form
                 formset.save()
@@ -512,7 +515,7 @@ def Pedidos_Update(request, pk):
         form = PedidoForm(request.POST, instance=ins)
         formset = DetallePedidoFormSet(request.POST, instance=ins)
         if form.is_valid() and formset.is_valid():
-            function(ins_formset,formset, Articulo)
+            function(ins_formset,formset, Articulo, op_select=False)
             form = form.save()
             formset.instance = form
             formset.save()
