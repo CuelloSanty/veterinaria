@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio | Clinica Veterinaria</title>
   <meta name="theme-color" content="#09f">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
   <meta name="description" content="Veterinaria La Cucha acompañado de todo el cuidado y cariño">
   {% block  css %}
     <link rel="stylesheet" type="text/css" href="{% static 'style\art.css' %}">
@@ -23,15 +25,16 @@
   
   <span style="display: flex;align-items: center;"><h1 style="color: rgb(42, 153, 233);" class=" p-1">Veterinaria La Cucha</h1> 
     <img src="{% static './images/huellas.png' %}" style="width: 4rem;"></span>
+    <hr>
     <p class="lead">¡Bienvenidos a Veterinaria La Cucha!</p>
+    <br>
+    <p class="lead"> Nos alegra que estés aquí. Nuestra principal misión es cuidar y proteger la salud de tus mascotas. Atendemos tanto animales pequeños como grandes, brindando un servicio integral, cálido y profesional.</p>
     
-    <p class="lead">Nos alegra que estés aquí. Nuestra principal misión es cuidar y proteger la salud de tus mascotas. Atendemos tanto animales pequeños como grandes, brindando un servicio integral, cálido y profesional.</p>
-    
-    <p class="lead">Contamos con veterinarios con experiencia, como <a href="https://www.instagram.com/gpnzalol/">Gonzalo Larghi</a> y <a href="https://www.instagram.com/attilifede/">Federico Atili</a> comprometidos con el bienestar animal.</p>
+    <p class="lead">Contamos con veterinarios altamente capacitados y con gran experienciaexperiencia, como <a href="https://www.instagram.com/gpnzalol/">Gonzalo Larghi</a> y <a href="https://www.instagram.com/attilifede/">Federico Atili</a> comprometidos con el bienestar animal.</p>
   </p>
 </div>
 </section>
-  <div style=" background-color: rgb(255, 255, 255);
+  <div style=" background-color: rgb(255, 255, 255); 
   " >
   <div id="carouselExampleCaptions" class="carousel slide carusel" style="margin: 0 auto;">
     <div class="carousel-indicators">
@@ -135,6 +138,8 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Quicksand', sans-serif;
+    animation: gradientBG 15s ease infinite;
   }
   @media screen and (max-width: 650px) {
   .carusel {
