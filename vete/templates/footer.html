@@ -28,7 +28,7 @@
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="width: 100%;">
-      <div class="modal-header" style="width: 100%:">
+      <div class="modal-header" style="width: 100%;">
         <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">Proporcione los datos necesarios:</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -39,7 +39,17 @@
                         <form method="post" class="footer-subscribe" style="display: flex; align-items:center; width: 100%;">
                             {% csrf_token %}
                         {{form.as_p}}
-                        <button type="submit" style="background-color: rgb(162, 201, 238); color: #111420">
+                        <button type="submit" style="background-color: #00bcd4;
+                                                    color: #ffffff;
+                                                    padding: 10px 20px;
+                                                    border: none;
+                                                    border-radius: 8px;
+                                                    cursor: pointer;
+                                                    font-size: 16px;
+                                                    transition: background-color 0.3s ease;
+                                                    "
+                                                    onmouseover="this.style.backgroundColor='#019aad'"
+                                                    onmouseout="this.style.backgroundColor='#00bcd4'">
                             Suscribirse
                         </button>
                     </form>
@@ -95,19 +105,27 @@
                             </li>
                         </ul>
                     </section>
+                    <section class="footer-logo">
+                        <div style="width: 8.5rem;">
+                            <img src="{% static 'images/perritos2.png' %}" alt="Descripción" style="width: 100% ">
+                        </div>
+                    </section>
                 </div>
                 <div class="footer-bottom">
                     <small>© La Cucha Veterinaria. <span id="year"></span>, Todos los derechos reservados</small>
                     <span class='social-links'>
-                        <a href="https://www.instagram.com/veterinarialacucha20/?hl=es" title="Instagram">
+                        <a href="https://www.instagram.com/veterinarialacucha20/?hl=es" title="Instagram" target="_blank">
                             <img src="{% static 'assets\instagram.svg' %}" alt='Instagram'>                       
                         </a>
-                        <a href="https://github.com/CuelloSanty/veterinaria.git" title="GitHub">
+                        <a href="https://github.com/CuelloSanty/veterinaria.git" title="GitHub" target="_blank">
                             <img src="{% static 'assets\github.svg' %}" alt='GitHub'>
                         </a>
                     </span>
                 </div>
+                
             </div>
+
+
         </footer>
         
         <script>

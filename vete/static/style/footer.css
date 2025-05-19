@@ -252,6 +252,21 @@ form{
     form{
         width: 18.5rem;
     }
+    .footer-logo { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 300px;
+    width: 100%;
+}
+
+    .footer-logo img {
+        width: 100%;
+        height: auto;
+        max-width: 200px; /* o el tamaño que desees */
+    }
 }
 
 .modal-content { background-color: #343a406d; color: #ffffff; backdrop-filter: blur(1rem)} .modal-header, .modal-footer { border-color: #454d55; } .btn-close { filter: invert(1); } .form-control { background-color: #454d55; color: #ffffff; border: 1px solid #6c757d; }
