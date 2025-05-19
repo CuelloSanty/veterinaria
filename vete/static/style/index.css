@@ -18,7 +18,12 @@ section img:hover {
     opacity: 1;
     filter: contrast(120%);
 }
-
+#carrusel, .carrusel {
+    font-weight: 700;
+    color: #2c3e50; /* Color del texto */
+    text-align: center; /* Centrar texto */
+    background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;
+}
 
 
 footer {
