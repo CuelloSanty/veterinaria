@@ -14,17 +14,25 @@ def function(db_formset_after, db_formset_before,DbToChanged, op_select=True):
     def GetData(cleaned_form):
         return {"id":cleaned_form.get('id'),"cantidad": cleaned_form.get('cantidad'),"art":cleaned_form.get('articulo')}
     def PushToDb(id, cantidad, operation, db_to_change, op_select):
-        db = db_to_change.objects.get(pk=id)
-        if not op_select:  # Si op_select es False, invertir operaciones
-            operation = 1 if operation == 2 else 2
+    
+        try:
+            db = db_to_change.objects.get(pk=id)
+            if not op_select:  # Si op_select es False, invertir operaciones
+                if operation == 1: 
+                    operation = 2
+                else: operation = 1 
+                print(operation)
 
-        if operation == 1:
-            db.cantidad += cantidad
-            db.save()
-        elif operation == 2:
-            if not cantidad > db.cantidad:
-                db.cantidad -= cantidad
+            if operation == 1:
+                db.cantidad += cantidad
                 db.save()
+            elif operation == 2:
+                try: 
+                    if cantidad <= db.cantidad: # Corregido la condición de comparación
+                        db.cantidad -= cantidad
+                        db.save()
+                except: pass 
+        except: pass
 
     def GetPreviousToCompare(db_formset_after,id_before, before):
         op = None
@@ -42,14 +50,15 @@ def function(db_formset_after, db_formset_before,DbToChanged, op_select=True):
                 cantidad = before["cantidad"] - after["cantidad"]
                 op = 2
             if before["cantidad"] == 0: 
-                PushToDb(before["art"].codigo,after["cantidad"],1 , DbToChanged)
-            PushToDb(before["art"].codigo, cantidad ,op,DbToChanged)
+                PushToDb(before["art"].codigo,after["cantidad"],1 , DbToChanged, op_select)
+            PushToDb(before["art"].codigo, cantidad ,op,DbToChanged, op_select)
 
     deleted_forms = db_formset_before.deleted_forms
     if deleted_forms:
         for form in deleted_forms:
             data = GetData(form.cleaned_data)
-            PushToDb(data['art'].codigo, data["cantidad"], 2, DbToChanged, op_select)
+            print(data)
+            PushToDb(data['art'].codigo, data["cantidad"], 1, DbToChanged, op_select)
     if db_formset_before:
         for form in db_formset_before:
             if form.has_changed():   
